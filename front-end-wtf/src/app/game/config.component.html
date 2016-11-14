@@ -1,0 +1,35 @@
+<md-card>
+  <md-card-content>
+    <md-input-container>
+      <label>Base Click Amount</label>
+      <input type="number" step="any" ng-model="$config.$state.baseClickAmount"></input>
+    </md-input-container>
+    <md-input-container>
+      <label>Click Upgrade Multiplier</label>
+      <input type="number" step="any" ng-model="$config.$state.clickUpgradeMultiplier"></input>
+    </md-input-container>
+    <md-input-container>
+      <label>Base Click Upgrade Cost</label>
+      <input type="number" step="any" ng-model="$config.$state.baseClickUpgradeCost"></input>
+    </md-input-container>
+    <md-input-container>
+      <label>Click Upgrade Cost Multipier</label>
+      <input type="number" step="any" ng-model="$config.$state.clickUpgradeCostMultiplier"></input>
+    </md-input-container>
+    <md-input-container>
+      <label>Autoclick Interval</label>
+      <input type="number" step="any" ng-model="$config.$state.autoclickInterval"></input>
+    </md-input-container>
+    <md-input-container>
+      <label>Base Autoclick Cost</label>
+      <input type="number" step="any" ng-model="$config.$state.baseAutoclickCost"></input>
+    </md-input-container>
+    <md-input-container>
+      <label>Autoclick Cost Multiplier</label>
+      <input type="number" step="any" ng-model="$config.$state.autoclickCostMultiplier"></input>
+    </md-input-container>
+  </md-card-content>
+  <md-card-actions ui-sref="^">
+    <md-button>Close</md-button>
+  </md-card-actions>
+</md-card>

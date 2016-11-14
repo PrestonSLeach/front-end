@@ -1,0 +1,10 @@
+<div layout-fill layout-margin layout-padding layout="row">
+  <div flex="66" layout="column">
+    <h1>Total: {{$game.$state.total}}</h1>
+    <h2>Autoclickers: {{$game.$state.numAutoclickers}}</h2>
+    <md-button ng-click="$game.click()">+{{$game.$state.$config.baseClickAmount}}</md-button>
+    <md-button ng-click="$game.addAutoclicker()" ng-disabled="$game.addAutoclickerDisabled()">Add Autoclicker</md-button>
+    <md-button ui-sref="game.config">Open Config</md-button>
+  </div>
+  <ui-view flex="33"></ui-view>
+</div>
