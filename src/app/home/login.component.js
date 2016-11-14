@@ -2,7 +2,7 @@ import templateUrl from './login.component.html'
 
 /* @ngInject */
 class LoginController {
-  constructor ($log, $login) {
+  constructor ($log, $login, $http) {
     this.$state = $login
     $log.debug('LoginController instantiated')
   }
