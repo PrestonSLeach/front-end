@@ -1,0 +1,9 @@
+<md-card>
+  <md-card-content>
+    {{$home.message}}
+  </md-card-content>
+  <md-card-actions>
+    <md-button ui-sref="game({new: true})">New</md-button>
+    <md-button ui-sref="game" ng-disabled="$home.continueDisabled()">Continue</md-button>
+  </md-card-actions>
+</md-card>
