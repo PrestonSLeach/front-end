@@ -2,8 +2,9 @@ import templateUrl from './home.component.html'
 
 /* @ngInject */
 class HomeController {
-  constructor ($log, $game) {
+  constructor ($log, $game, $user) {
     this.$game = $game
+    this.$user = $user
     this.message = 'this is the greatest twitter of All Time'
     $log.debug('HomeController instantiated')
   }

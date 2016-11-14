@@ -6,6 +6,7 @@ import uiRouter from 'angular-ui-router'
 
 import twitterHome from './home/home.module'
 import clickerGame from './game/game.module'
+import twitterUser from './user/user.module'
 
 import { app } from './app.component'
 import { configure } from './app.config'
@@ -21,7 +22,8 @@ export default
       uiRouter,
 
       twitterHome,
-      clickerGame
+      clickerGame,
+      twitterUser
     ])
     .component('app', app)
     .config(configure)
