@@ -1,0 +1,1 @@
+Clean up code in src/app/user/user.component.js at some point, unnecessary comments

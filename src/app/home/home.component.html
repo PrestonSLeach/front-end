@@ -3,6 +3,7 @@
     {{$home.message}}
   </md-card-content>
   <md-card-actions>
+    <md-button ui-sref="user">Go to User</md-button>
     <md-button ui-sref="game({new: true})">New</md-button>
     <md-button ui-sref="game" ng-disabled="$home.continueDisabled()">Continue</md-button>
   </md-card-actions>
