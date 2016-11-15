@@ -71,7 +71,7 @@ top: 0;
 
 /*tag sidenav*/
 .centerAlign {
-  text-align: center;
+  align-content: center;
 }
 
 .tag-sidenav {
