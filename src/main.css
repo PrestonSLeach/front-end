@@ -1,8 +1,14 @@
-/* login page */
-
 * {
   box-sizing: border-box;
 }
+
+.full-width {
+  width:100%;
+  position: relative;
+}
+
+/* login page */
+
 .flex1 {
   -webkit-flex: 1;
           flex: 1;
@@ -62,3 +68,16 @@ top: 0;
 
 .carddemoBasicUsage .card-media {
   background-color: #999999; }
+
+/*tag sidenav*/
+.sidenavTags {
+  text-align: center;
+}
+
+.tag-sidenav {
+  width: 30%;
+}
+
+.main-content {
+  width: 70%;
+}
