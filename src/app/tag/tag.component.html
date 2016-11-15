@@ -38,11 +38,10 @@
   </md-content>
 
   <md-sidenav md-component-id="right" md-is-locked-open="true" layout="column" layout-align="start none" class="tag-sidenav">
-    <div class="sidenavTags">
-      tag1
-    </div>
-    <div class="sidenavTags">
-      tag2
-    </div>
+    <div ng-repeat="tag in $tag.$state.tags">
+      <p class="centerAlign">
+        {{tag.label}}
+      </p>
+    </div
   </md-sidenav>
 </div>
