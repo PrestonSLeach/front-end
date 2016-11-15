@@ -81,3 +81,15 @@ top: 0;
 .main-content {
   width: 70%;
 }
+
+/*toolbar*/
+
+.toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
+  color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.search {
+  background-color: transparent;
+}
