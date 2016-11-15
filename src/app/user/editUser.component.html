@@ -1,10 +1,9 @@
 <md-card>
   <md-content layout-padding="">
-    <form name="userForm">
+    <form name="$editUser.$state.editUserForm">
       <div layout-gt-sm="column">
         <md-input-container class="md-block" flex-gt-sm="">
           <label>Username</label>
-            <input name="username" ng-model="$editUser.$state.user.username">
         </md-input-container>
           <div flex="5" hide-xs="" hide-sm="">
             <!-- Spacer //-->
@@ -35,10 +34,11 @@
           <label>PhoneNumber</label>
           <input name="phoneNumber" ng-model="$editUser.$state.user.phoneNumber">
         </md-input-container>
-        <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
-        <md-card-actions ui-sref="^">
-          <md-button class="md-raised">Close</md-button>
-        </md-card-actions>
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+          <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
+          <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.clear()">Close</md-button>
+          <md-button ui-sref="home.login" class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
+        </section>
       </div>
       <style>
         body[dir=rtl] .hint {

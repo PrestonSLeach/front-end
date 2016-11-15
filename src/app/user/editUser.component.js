@@ -4,6 +4,8 @@ import templateUrl from './editUser.component.html'
 class editUserController {
   constructor ($log, $editUser) {
     this.$state = $editUser
+    $editUser.inProgress = true
+    // $editUser.clear()
     $log.debug('editUserController instantiated')
   }
 }
