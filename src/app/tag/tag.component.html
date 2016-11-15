@@ -1,5 +1,5 @@
 <div layout="row">
-  <div layout="column" layout-align="center none" class="main-content">
+  <md-content layout="column" layout-align="start none" class="main-content">
     <div>
     <div class="tweets-pane" ng-repeat="tweet in $tag.$state.tweets">
       <div ng-cloak="" class="carddemoBasicUsage">
@@ -35,14 +35,14 @@
       </div>
     </div>
     </div>
-  </div>
+  </md-content>
 
-  <div layout="column" layout-align="center none" class="tag-sidenav">
-    <div>
+  <md-sidenav md-component-id="right" md-is-locked-open="true" layout="column" layout-align="start none" class="tag-sidenav">
+    <div class="sidenavTags">
       tag1
     </div>
     <div class="sidenavTags">
       tag2
     </div>
-  </div>
+  </md-sidenav>
 </div>
