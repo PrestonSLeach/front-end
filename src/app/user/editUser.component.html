@@ -1,1 +1,51 @@
-<h1> Placeholder </h1>
+<md-card>
+  <md-content layout-padding="">
+    <form name="userForm">
+      <div layout-gt-sm="column">
+        <md-input-container class="md-block" flex-gt-sm="">
+          <label>Username</label>
+            <input name="username" ng-model="$editUser.$state.user.username">
+        </md-input-container>
+          <div flex="5" hide-xs="" hide-sm="">
+            <!-- Spacer //-->
+          </div>
+        <md-input-container class="md-block" flex-gt-sm="">
+          <label>Password</label>
+          <input name="password" ng-model="$editUser.$state.user.password" type="password">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm="">
+          <label>FirstName</label>
+            <input name="firstName" ng-model="$editUser.$state.user.firstName">
+        </md-input-container>
+          <div flex="5" hide-xs="" hide-sm="">
+            <!-- Spacer //-->
+          </div>
+        <md-input-container class="md-block" flex-gt-sm="">
+          <label>LastName</label>
+          <input name="lastName" ng-model="$editUser.$state.user.lastName">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm="">
+          <label>Email</label>
+            <input name="email" ng-model="$editUser.$state.user.email">
+        </md-input-container>
+          <div flex="5" hide-xs="" hide-sm="">
+            <!-- Spacer //-->
+          </div>
+        <md-input-container class="md-block" flex-gt-sm="">
+          <label>PhoneNumber</label>
+          <input name="phoneNumber" ng-model="$editUser.$state.user.phoneNumber">
+        </md-input-container>
+        <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
+        <md-card-actions ui-sref="^">
+          <md-button class="md-raised">Close</md-button>
+        </md-card-actions>
+      </div>
+      <style>
+        body[dir=rtl] .hint {
+          right: 2px;
+          left: auto;
+        }
+      </style>
+    </form>
+  </md-content>
+</md-card>
