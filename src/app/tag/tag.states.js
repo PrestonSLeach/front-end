@@ -2,7 +2,7 @@ export const tag = {
   name: 'tag',
   url: '/tag/:tag',
   params: {
-    tag: 'abc'
+    tag: tag
   },
   component: 'tag'
 }

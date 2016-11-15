@@ -1,2 +1,41 @@
-<h1>This is the tag page</h1>
-<p>{{ $tag.tag }}</p>
+<div layout="row">
+  <div layout="column">
+
+    <div class="tweets-pane" ng-repeat="tweet in $tag.$state.tweets">
+      <div ng-cloak="" class="carddemoBasicUsage">
+        <md-content class="md-padding" layout-xs="column" layout="row">
+          <div flex-xs="" flex-gt-xs="50" layout="column">
+            <md-card>
+              <md-card-header>
+                <md-card-avatar>
+                  <!-- <img class="md-user-avatar" src="./static/imgs/icons/favorite.svg"/> -->
+                </md-card-avatar>
+                <md-card-header-text>
+                  <span class="md-title">{{ tweet.author.username }}</span>
+                </md-card-header-text>
+                <md-button class="md-icon-button" aria-label="More">
+              <!-- <md-icon md-svg-icon="./static/imgs/icons/favorite.svg"></md-icon> -->
+            </md-button>
+              </md-card-header>
+              <md-card-content>
+                <p>
+                  {{ tweet.content }}
+                </p>
+              </md-card-content>
+              <md-card-actions layout="row" layout-align="space-around center">
+                <md-button class="md-icon-button md-accent" aria-label="Favorite">
+              <!-- <md-icon md-svg-icon="./static/imgs/icons/favorite.svg"></md-icon> -->
+            </md-button>
+                <md-button>Repost</md-button>
+                <md-button>Reply</md-button>
+              </md-card-actions>
+            </md-card>
+      </div>
+
+    </div>
+  </div>
+
+  <div layout="column">
+
+  </div>
+</div>

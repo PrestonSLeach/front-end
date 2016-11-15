@@ -1,3 +1,5 @@
+/* login page */
+
 * {
   box-sizing: border-box;
 }
@@ -55,3 +57,8 @@ top: 0;
   margin: 8px;
   padding: 20px;
 }
+
+/* tweet card css */
+
+.carddemoBasicUsage .card-media {
+  background-color: #999999; }
