@@ -5,11 +5,12 @@ export class TagService {
     'ngInject'
     this.$config = $config
     this.$http = $http
+    this.getMostRecentTags()
     $log.debug('TagService instantiated!')
   }
 
   getTweetsByTag (tag) {
-    let tweetService = this
+    let tagService = this
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/tags/' + tag,
@@ -19,13 +20,27 @@ export class TagService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      tweetService.tweets = response.data
+      tagService.tweets = response.data
     }, function errorCallback (response) {
       console.log(response)
     })
   }
 
-  exists () {
-    return this.initialized !== false
+  getMostRecentTags () {
+    let tagService = this
+    this.$http({
+      method: 'GET',
+      url: 'http://localhost:8080/tags',
+      header: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      }
+    }).then(function succeessCallback (response) {
+      tagService.tags = response.data
+    }, function errorCallback (response) {
+      console.log(response)
+    })
   }
+
 }
