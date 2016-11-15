@@ -1,38 +1,37 @@
 <div class="background-image"></div>
 <div layout="row" layout-xs="column" class="welcomeInfo">
   <div class="welcome">
-      <div flex>
-          <p>
-              Twitter. <br>Welcome to Stupidity
-          </p>
-      </div>
+    <div flex>
+      <p>
+        Twitter. <br>Welcome to Stupidity
+      </p>
+    </div>
   </div>
-  </div>
-  <div flex class="loginCard" >
+</div>
+<div flex class="loginCard" >
 <md-card >
-      <md-content layout-padding=""  >
-          <form name="userForm" ng-show="$login.$state.loginBoo">
-              <div layout-gt-sm="column">
-                  <md-input-container class="md-block" flex-gt-sm="">
-                      <label>Username</label>
-                      <input name="username" ng-model="$login.$state.user.username">
-                  </md-input-container>
-                  <div flex="5" hide-xs="" hide-sm="">
-                      <!-- Spacer //-->
-                  </div>
-                  <md-input-container class="md-block" flex-gt-sm="">
-                      <label>Password</label>
-                      <input name="password" ng-model="$login.$state.user.password" type="password">
-                  </md-input-container>
-              </div>
-
-              <style>
-                  body[dir=rtl] .hint {
-                      right: 2px;
-                      left: auto;
-                  }
-              </style>
-          </form>
+  <md-content layout-padding=""  >
+    <form name="userForm" ng-show="$login.$state.loginBoo">
+      <div layout-gt-sm="column">
+        <md-input-container class="md-block" flex-gt-sm="">
+          <label>Username</label>
+            <input name="username" ng-model="$login.$state.user.username">
+        </md-input-container>
+          <div flex="5" hide-xs="" hide-sm="">
+            <!-- Spacer //-->
+          </div>
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Password</label>
+            <input name="password" ng-model="$login.$state.user.password" type="password">
+          </md-input-container>
+      </div>
+      <style>
+        body[dir=rtl] .hint {
+          right: 2px;
+          left: auto;
+        }
+      </style>
+    </form>
     <form name="userForm" ng-show="!$login.$state.loginBoo">
       <div layout-gt-sm="row">
         <md-input-container class="md-block" flex-gt-sm="">
@@ -42,7 +41,7 @@
     <div ng-messages="userForm.userName.$error" ng-show="userForm.userName.$dirty">
       <div ng-message="required">A username is required</div>
     </div>
-        </md-input-container>
+      </md-input-container>
         <div flex="5" hide-xs="" hide-sm="">
           <!-- Spacer //-->
         </div>
@@ -79,10 +78,10 @@
         </style>
       </div>
     </form>
-          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-     <md-button class="md-raised" ng-click="$login.$state.loginClicked()">Login</md-button>
-     <md-button class="md-raised md-primary" ng-click="$login.$state.signUpClicked()">Sign Up</md-button>
-   </section>
-      </md-content>
-    </md-card>
-  </div>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-raised" ng-click="$login.$state.loginClicked()">Login</md-button>
+      <md-button class="md-raised md-primary" ng-click="$login.$state.signUpClicked()">Sign Up</md-button>
+    </section>
+  </md-content>
+</md-card>
+</div>
