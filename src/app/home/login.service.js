@@ -1,12 +1,15 @@
 export class LoginService {
 
-  constructor ($log, $http) {
+  constructor ($log, $http, $cookies) {
     'ngInject'
     this.$http = $http
+    this.$cookies = $cookies
+    console.log($cookies.getAll())
     this.message = 'this is the greatest twitter of All Time'
     this.loginBoo = true
     this.email
-    this.password
+    this.user.password = $cookies.get('password')
+    this.user.username = $cookies.get('username')
     this.repeatPassword
     $log.debug('HomeController instantiated')
   }
@@ -37,16 +40,26 @@ export class LoginService {
   }
 
   login () {
+    let cookies = this.$cookies
+    let user = this.user
+
     this.$http({
-      method: 'GET',
-      url: 'http://localhost:8080/validate/username/exists/@' + this.user.username,
+      method: 'POST',
+      url: 'http://localhost:8080/validate/login',
       headers: {
         'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      },
+      data: {
+        username: this.user.username,
+        password: this.user.password
       }
     }).then(function successCallback (response) {
-      console.log(response.data)
+      // cookies.put('userId', response.data.id)
+      cookies.put('username', user.username)
+      cookies.put('password', user.password)
+      console.log(cookies.getAll())
     }, function errorCallback (response) {
       console.log(response)
     })

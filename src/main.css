@@ -70,8 +70,8 @@ top: 0;
   background-color: #999999; }
 
 /*tag sidenav*/
-.sidenavTags {
-  text-align: center;
+.centerAlign {
+  align-content: center;
 }
 
 .tag-sidenav {

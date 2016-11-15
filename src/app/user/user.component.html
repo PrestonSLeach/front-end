@@ -1,9 +1,7 @@
 <div layout-fill layout-margin layout-padding layout="row">
-<div flex="30" layout="column">
+<div layout="column">
   <md-card>
-    <md-card-actions ui-sref="user.editUser">
-      <md-button>Edit Profile</md-button>
-    </md-card-actions>
+      <md-button ui-sref="user.editUser" ng-show="!$user.$state.$editUser.inProgress">Edit Profile</md-button>
   </md-card>
 </div>
 <ui-view flex="70"></ui-view>

@@ -3,6 +3,7 @@ import ngAria from 'angular-aria'
 import ngMaterial from 'angular-material'
 import ngMessages from 'angular-messages'
 import uiRouter from 'angular-ui-router'
+import ngCookies from 'angular-cookies'
 
 import twitterHome from './home/home.module'
 import clickerGame from './game/game.module'
@@ -21,6 +22,7 @@ export default
       ngMaterial,
       ngMessages,
       uiRouter,
+      ngCookies,
 
       twitterHome,
       clickerGame,
