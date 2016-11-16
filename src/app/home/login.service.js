@@ -60,6 +60,7 @@ export class LoginService {
       cookies.put('username', user.username)
       cookies.put('password', user.password)
       console.log(cookies.getAll())
+      console.log(cookies.get('username'))
     }, function errorCallback (response) {
       console.log(response)
     })
