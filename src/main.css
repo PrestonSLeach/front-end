@@ -37,7 +37,7 @@
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   top: 10px;
   left: 0;
-  position: fixed;
+  position: relative;
   margin-left: 20px;
   margin-right: 20px;
   right: 0;
@@ -47,9 +47,7 @@
 
 .welcomeInfo {
   width: 100%;
-  position: absolute;
-top: 0;
-  margin: 20px;
+  position: relative;
 }
 
 .welcome {
@@ -59,9 +57,14 @@ top: 0;
   font-style: oblique;
 }
 
-.loginCard {
+.loginContainer {
   margin: 8px;
   padding: 20px;
+}
+
+.loginCard {
+  width: 500px;
+  max-width: 80%;
 }
 
 /* tweet card css */
