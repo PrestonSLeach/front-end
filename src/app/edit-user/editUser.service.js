@@ -1,9 +1,10 @@
 export class EditUserService {
 
-  constructor ($log, $http, $cookies) {
+  constructor ($log, $http, $cookies, $config) {
     'ngInject'
     this.$http = $http
     this.$cookies = $cookies
+    this.$config = $config
     this.populateProfileInfo()
     $log.debug('EditUserService instantiated')
   }
