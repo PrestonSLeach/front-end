@@ -80,8 +80,8 @@
         </div>
       </form>
       <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-        <md-button ui-sref="^" ng-disabled="!$login.$state.loginAvailable()" class="md-raised" ng-click="$login.$state.loginClicked()">Login</md-button>
-        <md-button class="md-raised md-primary" ng-click="$login.$state.signUpClicked()">Don't have an account? Sign Up</md-button>
+        <md-button ui-sref="/home" ng-disabled="!$login.$state.loginAvailable()" class="md-raised" ng-click="$login.$state.loginClicked()">Login</md-button>
+        <md-button ui-sref="/home" class="md-raised md-primary" ng-click="$login.$state.signUpClicked()">Don't have an account? Sign Up</md-button>
       </section>
     </md-content>
   </md-card>
