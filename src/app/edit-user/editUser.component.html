@@ -9,10 +9,6 @@
             <!-- Spacer //-->
           </div>
         <md-input-container class="md-block" flex-gt-sm="">
-          <label>Password</label>
-          <input name="password" ng-model="$editUser.$state.user.password" type="password">
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="">
           <label>FirstName</label>
             <input name="firstName" ng-model="$editUser.$state.user.firstName">
         </md-input-container>
@@ -35,10 +31,9 @@
           <input name="phoneNumber" ng-model="$editUser.$state.user.phoneNumber">
         </md-input-container>
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button ui-sref="user" class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
-          <md-button ui-sref="user" class="md-raised" ng-click="$editUser.$state.clear()">Close</md-button>
-          <md-button ui-sref="login" class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
-          <md-button class="md-raised" ng-click="$editUser.$state.populateProfileInfo()">Profile</md-button>
+          <md-button class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
+          <md-button class="md-raised" ng-click="$editUser.$state.clear()">Close</md-button>
+          <md-button class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
         </section>
       </div>
       <style>
