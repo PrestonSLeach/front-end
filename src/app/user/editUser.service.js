@@ -3,11 +3,8 @@ export class EditUserService {
   constructor ($log, $http, $cookies) {
     'ngInject'
     this.$http = $http
-    // fields listed in edit profile
     this.editUserForm
     this.$cookies = $cookies
-    // optional?
-    // editPrivacy
     $log.debug('EditUserService instantiated')
   }
 
@@ -24,7 +21,7 @@ export class EditUserService {
       },
       data: {
         credentials: {
-          username: 'myUsername',
+          username: cookies.get('username'),
           password: 'password'
         },
         profile: {
@@ -52,11 +49,10 @@ export class EditUserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       },
       data: {
-        username: 'myUsername',
+        username: cookies.get('username'),
         password: 'password'
       }
     }).then(function successCallback (response) {
-      console.log(cookies.get('username'))
       console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)

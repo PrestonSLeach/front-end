@@ -4,7 +4,7 @@ export class UserService {
   constructor ($log, $config, $editUser) {
     'ngInject'
     this.$config = $config
-    this.$editUser =$editUser
+    this.$editUser = $editUser
     $log.debug('UserService instantiated!')
   }
 
