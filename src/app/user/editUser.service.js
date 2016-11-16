@@ -3,8 +3,8 @@ export class EditUserService {
   constructor ($log, $http, $cookies) {
     'ngInject'
     this.$http = $http
-    this.editUserForm
     this.$cookies = $cookies
+    this.populateProfileInfo()
     $log.debug('EditUserService instantiated')
   }
 
@@ -22,7 +22,7 @@ export class EditUserService {
       data: {
         credentials: {
           username: cookies.get('username'),
-          password: 'password'
+          password: cookies.get('password')
         },
         profile: {
           email: this.user.email,
@@ -50,9 +50,31 @@ export class EditUserService {
       },
       data: {
         username: cookies.get('username'),
-        password: 'password'
+        password: cookies.get('password')
       }
     }).then(function successCallback (response) {
+      console.log(response.data)
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
+  populateProfileInfo () {
+    let cookies = this.$cookies
+    let userWorks = this
+    this.$http({
+      method: 'GET',
+      url: 'http://localhost:8080/users/@' + cookies.get('username'),
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      }
+    }).then(function successCallback (response) {
+      userWorks.user.firstName = response.data.profile.firstName
+      userWorks.user.lastName = response.data.profile.lastName
+      userWorks.user.phoneNumber = response.data.profile.phoneNumber
+      userWorks.user.email = response.data.profile.email
       console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
@@ -79,5 +101,4 @@ export class EditUserService {
     email: '',
     phone: ''
   }
-
 }
