@@ -1,10 +1,9 @@
 export class HomeService {
   initialized = false
 
-  constructor ($log, $login, $signup, $http, $cookies) {
+  constructor ($log, $login, $http, $cookies) {
     'ngInject'
     this.$login = $login
-    this.$signup = $signup
     this.$http = $http
     this.$cookies = $cookies
     this.getUserFeed()

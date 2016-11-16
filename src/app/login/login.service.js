@@ -74,6 +74,15 @@ export class LoginService {
     })
   }
 
+  loginAvailable () {
+    if (this.user.username) {
+      if (this.user.password) {
+        return true
+      }
+    }
+    return false
+  }
+
   continueDisabled () {
     return !this.$game.exists()
   }
