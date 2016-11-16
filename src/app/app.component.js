@@ -2,9 +2,10 @@ import templateUrl from './app.component.html'
 
 /* @ngInject */
 class AppController {
-    constructor($log, $http, $q, $timeout) {
+    constructor($log, $http, $q, $timeout, $location) {
         var self = this;
         this.$http = $http
+        this.$location = $location
         self.simulateQuery = false;
         self.isDisabled = false;
 
@@ -43,11 +44,17 @@ class AppController {
         }
 
         function searchTextChange(text) {
-            $log.info('Text changed to ' + text);
+            //$log.info('Text changed to ' + text);
         }
 
         function selectedItemChange(item) {
             $log.info('Item changed to ' + JSON.stringify(item));
+            if (item.display.charAt(0)==='#') {
+              console.log('entered right')
+              this.$location.path('/tag/'+item.value)
+            } else if (item.display.charAt(0)==='@') {
+
+            }
         }
 
         /**
@@ -86,7 +93,6 @@ class AppController {
             }
         }).then(function successCallback(response) {
             allStates = response.data
-            console.log(response.data)
             allStates = allStates.map(function (state) {
                 return {
                     value: state.label.substring(1),
@@ -94,8 +100,6 @@ class AppController {
                 };
             });
             control.states = allStates
-            console.log('statse below')
-            console.log(control.states)
         }, function errorCallback(response) {
             console.log(response)
         })
