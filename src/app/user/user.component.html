@@ -49,4 +49,11 @@
       </md-button>
     </div>
   </md-sidenav>
+<div layout-fill layout-margin layout-padding layout="row">
+<div layout="column">
+  <md-card>
+      <md-button ui-sref="editUser" ng-show="!$user.$state.$editUser.inProgress">Edit Profile</md-button>
+  </md-card>
+</div>
+<ui-view flex="70"></ui-view>
 </div>

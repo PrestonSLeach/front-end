@@ -1,4 +1,5 @@
-<div ng-show="$home.$state.$login.username">
+<!-- <div ng-show="$home.$state.$login.username"> -->
+<div>
   <md-card>
     <md-card-content>
       {{$home.message}}
@@ -11,4 +12,7 @@
     </md-card-actions>
   </md-card>
 </div>
-<ui-view ng-show="!$home.$state.$login.username"></ui-view>
+
+<div ng-repeat="tweet in $home.$state.userFeed">
+  <p>{{ tweet.content }}</p>
+</div>

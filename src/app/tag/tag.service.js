@@ -30,7 +30,7 @@ export class TagService {
     let tagService = this
     this.$http({
       method: 'GET',
-      url: 'http://localhost:8080/tags',
+      url: 'http://localhost:8080/tags/recents',
       header: {
         'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
         'Content-Type': 'application/json',

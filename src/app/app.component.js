@@ -13,8 +13,6 @@ class AppController {
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange = searchTextChange;
-
-        self.newState = newState;
         this.wtf = 'wtf'
         var originatorEv;
 
@@ -28,10 +26,6 @@ class AppController {
         this.openProfile = function() {
           //redirect to user profile
           console.log('open profile')
-        }
-
-        function newState(state) {
-            alert("Sorry! You'll need to create a Constitution for " + state + " first!");
         }
 
         function querySearch(query) {
@@ -92,6 +86,7 @@ class AppController {
             }
         }).then(function successCallback(response) {
             allStates = response.data
+            console.log(response.data)
             allStates = allStates.map(function (state) {
                 return {
                     value: state.label.substring(1),
@@ -99,6 +94,8 @@ class AppController {
                 };
             });
             control.states = allStates
+            console.log('statse below')
+            console.log(control.states)
         }, function errorCallback(response) {
             console.log(response)
         })

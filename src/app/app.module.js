@@ -9,6 +9,8 @@ import twitterHome from './home/home.module'
 import clickerGame from './game/game.module'
 import twitterUser from './user/user.module'
 import twitterTag from './tag/tag.module'
+import twitterLogin from './login/login.module'
+import twitterEditUser from './edit-user/editUser.module'
 
 import { app } from './app.component'
 import { configure } from './app.config'
@@ -27,7 +29,9 @@ export default
       twitterHome,
       clickerGame,
       twitterUser,
-      twitterTag
+      twitterTag,
+      twitterLogin,
+      twitterEditUser
     ])
     .component('app', app)
     .config(configure)

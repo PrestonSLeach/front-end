@@ -1,10 +1,12 @@
 export class LoginService {
 
-  constructor ($log, $http, $cookies) {
+  constructor ($log, $http, $cookies, $window, $location) {
     'ngInject'
     this.$http = $http
     this.$cookies = $cookies
-    console.log($cookies.getAll())
+    // console.log($cookies.getAll())
+    this.$window = $window
+    this.$location = $location
     this.message = 'this is the greatest twitter of All Time'
     this.loginBoo = true
     this.email
@@ -15,6 +17,9 @@ export class LoginService {
   }
 
   signUp () {
+    let cookies = this.$cookies
+    let location = this.$location
+    let user = this.user
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/users',
@@ -25,15 +30,18 @@ export class LoginService {
       },
       data: {
         'credentials': {
-          username: this.username,
-          password: this.password
+          username: this.user.username,
+          password: this.user.password
         },
         'profile': {
-          email: this.email
+          email: this.user.email
         }
       }
     }).then(function successCallback (response) {
       console.log(response.data)
+      cookies.put('username', user.username)
+      cookies.put('password', user.password)
+      location.path('/home')
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -42,6 +50,8 @@ export class LoginService {
   login () {
     let cookies = this.$cookies
     let user = this.user
+    let window = this.$window
+    let location = this.$location
 
     this.$http({
       method: 'POST',
@@ -56,13 +66,27 @@ export class LoginService {
         password: this.user.password
       }
     }).then(function successCallback (response) {
-      // cookies.put('userId', response.data.id)
-      cookies.put('username', user.username)
-      cookies.put('password', user.password)
-      console.log(cookies.getAll())
+      if (response.status === 200) {
+        cookies.put('username', user.username)
+        cookies.put('password', user.password)
+        // console.log(cookies.getAll())
+        location.path('/home')
+      } else {
+        console.log(response)
+      }
     }, function errorCallback (response) {
       console.log(response)
+      window.alert('You entered invalid credentials. Please try again.')
     })
+  }
+
+  loginAvailable () {
+    if (this.user.username) {
+      if (this.user.password) {
+        return true
+      }
+    }
+    return false
   }
 
   continueDisabled () {

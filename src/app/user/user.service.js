@@ -1,4 +1,5 @@
 export class UserService {
+
     initialized = false
 
     constructor($log, $config, $editUser, $http, $cookies) {
@@ -65,4 +66,6 @@ export class UserService {
       email: '',
       phone: ''
     }
+
+  initialized = false
 }
