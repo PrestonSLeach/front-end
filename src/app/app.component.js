@@ -10,14 +10,25 @@ class AppController {
 
         // list of `state` value/display objects
         this.loadAll();
-        console.log('states is below')
-        console.log(self.states)
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange = searchTextChange;
 
         self.newState = newState;
         this.wtf = 'wtf'
+        var originatorEv;
+
+
+        this.openMenu = function($mdOpenMenu, ev) {
+          console.log('open menu clicked')
+          originatorEv = ev;
+          $mdOpenMenu(ev);
+        }
+
+        this.openProfile = function() {
+          //redirect to user profile
+          console.log('open profile')
+        }
 
         function newState(state) {
             alert("Sorry! You'll need to create a Constitution for " + state + " first!");
@@ -71,8 +82,6 @@ class AppController {
     loadAll () {
         var allStates = []
         var control = this
-        console.log('control below')
-        console.log(control)
         this.$http({
             method: 'GET',
             url: 'http://localhost:8080/tags',
@@ -89,40 +98,12 @@ class AppController {
                     display: state.label
                 };
             });
-            console.log(allStates);
             control.states = allStates
-            loadUsersIntoAll()
         }, function errorCallback(response) {
             console.log(response)
         })
     }
-    loadUsersIntoAll () {
-        var allStates = []
-        var control = this
-        console.log('control below')
-        console.log(control)
-        this.$http({
-            method: 'GET',
-            url: 'http://localhost:8080/users',
-            headers: {
-                'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000/'
-            }
-        }).then(function successCallback(response) {
-            allStates = response.data
-            allStates = allStates.map(function (state) {
-                return {
-                    value: state.label.substring(1),
-                    display: state.label
-                };
-            });
-            console.log(allStates);
-            control.states.concat(allStates)
-        }, function errorCallback(response) {
-            console.log(response)
-        })
-    }
+
 }
 
 export const app = {
