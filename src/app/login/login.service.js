@@ -1,10 +1,12 @@
 export class LoginService {
 
-  constructor ($log, $http, $cookies) {
+  constructor ($log, $http, $cookies, $window, $location) {
     'ngInject'
     this.$http = $http
     this.$cookies = $cookies
-    console.log($cookies.getAll())
+    // console.log($cookies.getAll())
+    this.$window = $window
+    this.$location = $location
     this.message = 'this is the greatest twitter of All Time'
     this.loginBoo = true
     this.email
@@ -42,6 +44,8 @@ export class LoginService {
   login () {
     let cookies = this.$cookies
     let user = this.user
+    let window = this.$window
+    let location = this.$location
 
     this.$http({
       method: 'POST',
@@ -56,13 +60,27 @@ export class LoginService {
         password: this.user.password
       }
     }).then(function successCallback (response) {
-      // cookies.put('userId', response.data.id)
-      cookies.put('username', user.username)
-      cookies.put('password', user.password)
-      console.log(cookies.getAll())
+      if (response.status === 200) {
+        cookies.put('username', user.username)
+        cookies.put('password', user.password)
+        // console.log(cookies.getAll())
+        location.path("/home")
+      } else {
+        console.log(response)
+      }
     }, function errorCallback (response) {
       console.log(response)
+      window.alert("You entered invalid credentials. Please try again.")
     })
+  }
+
+  loginAvailable () {
+    if (this.user.username) {
+      if (this.user.password) {
+        return true
+      }
+    }
+    return false
   }
 
   continueDisabled () {
