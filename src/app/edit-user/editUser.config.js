@@ -1,7 +1,7 @@
-import { user } from './user.states'
+import { editUser } from './editUser.states'
 
 /* @ngInject */
 export function configure ($stateProvider) {
   $stateProvider
-    .state(user)
+    .state(editUser)
 }

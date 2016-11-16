@@ -35,9 +35,9 @@
           <input name="phoneNumber" ng-model="$editUser.$state.user.phoneNumber">
         </md-input-container>
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
-          <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.clear()">Close</md-button>
-          <md-button ui-sref="/login" class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
+          <md-button ui-sref="user" class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
+          <md-button ui-sref="user" class="md-raised" ng-click="$editUser.$state.clear()">Close</md-button>
+          <md-button ui-sref="login" class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
           <md-button class="md-raised" ng-click="$editUser.$state.populateProfileInfo()">Profile</md-button>
         </section>
       </div>
