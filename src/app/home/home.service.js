@@ -23,11 +23,8 @@ export class HomeService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
   	}).then(function successfulCallBack (response) {
-  		console.log("++++++")
-  		console.log(response)
   		homeService.userFeed = response.data
   	}), function errorCallBack (response) {
-  		console.log("-------")
   		console.log(response)
   	}
   }
