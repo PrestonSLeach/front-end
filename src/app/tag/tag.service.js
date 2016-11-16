@@ -1,10 +1,11 @@
 export class TagService {
   initialized = false
 
-  constructor ($log, $config, $http) {
+  constructor ($log, $config, $http, $sce) {
     'ngInject'
     this.$config = $config
     this.$http = $http
+    this.$sce = $sce
     this.getMostRecentTags()
     $log.debug('TagService instantiated!')
   }
@@ -21,6 +22,14 @@ export class TagService {
       }
     }).then(function successCallback (response) {
       tagService.tweets = response.data
+        .map(tweet => {
+          tweet.content = tagService.$sce.trustAsHtml(tweet.content
+            .split(' ')
+            .map(word => (word.substring(0, 1) === '#') ? "<md-button ui-sref='tag({tag:" + word.substring(1) + "})'><a href='tag/" + word.substring(1) + "'>" + word + "</a></md-button>" : word)
+            .join(' '))
+          return tweet
+        })
+      console.log(tagService.tweets[0].content)
     }, function errorCallback (response) {
       console.log(response)
     })
