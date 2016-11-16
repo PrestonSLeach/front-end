@@ -3,7 +3,7 @@
     <form name="$editUser.$state.editUserForm">
       <div layout-gt-sm="column">
         <md-input-container class="md-block" flex-gt-sm="">
-          <label>Username</label>
+          <h1>{{$editUser.$state.$cookies.get('username')}}</h1>
         </md-input-container>
           <div flex="5" hide-xs="" hide-sm="">
             <!-- Spacer //-->
@@ -37,7 +37,7 @@
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
           <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
           <md-button ui-sref="^" class="md-raised" ng-click="$editUser.$state.clear()">Close</md-button>
-          <md-button ui-sref="home.login" class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
+          <md-button ui-sref="/login" class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
           <md-button class="md-raised" ng-click="$editUser.$state.populateProfileInfo()">Profile</md-button>
         </section>
       </div>
