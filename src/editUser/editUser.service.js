@@ -83,14 +83,7 @@ export class EditUserService {
 
   clear () {
     this.inProgress = false
-    this.user = {
-      username: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: ''
-    }
+    this.populateProfileInfo
   }
 
   user = {
