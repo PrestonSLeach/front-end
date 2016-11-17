@@ -48,7 +48,7 @@
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button ng-click="$app.logout()">
+                                    <md-button ng-click="$app.$login.isLoggedIn = false" ui-sref = 'login'>
                                         <md-icon md-svg-icon="/static/imgs/icons/ic_launch_24px.svg"></md-icon>
                                         Logout
                                     </md-button>
