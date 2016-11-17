@@ -1,3 +1,54 @@
+<div layout="row" layout-fill>
+  <md-content layout="column" layout-align="start none" class="main-content">
+    <div ng-show="!$tag.$state.tweets.length" layout-align="center none" layout="column">
+      <p style="text-align: center">
+        This tag has never been used.
+      </p>
+    </div>
+    <div>
+      <div class="tweets-pane" ng-repeat="tweet in $user.$state.tweets">
+        <div ng-cloak="" class="carddemoBasicUsage">
+          <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
+            <div flex-xs="" flex-gt-xs="50" layout="column">
+              <md-card>
+                <md-card-header>
+                  <md-card-avatar>
+                    <img class="md-user-avatar" src="/static/imgs/icons/person_black.svg"/>
+                  </md-card-avatar>
+                  <md-card-header-text>
+                    <span class="md-title">{{ tweet.author.username }}</span>
+                  </md-card-header-text>
+                  <md-button class="md-icon-button" aria-label="More">
+                    <md-icon md-svg-icon="/static/imgs/icons/more_vert.svg"></md-icon>
+                  </md-button>
+                </md-card-header>
+                <md-card-content>
+                  <p>
+                    {{ tweet.content }}
+                  </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="space-around center">
+                  <md-button class="md-icon-button md-accent" aria-label="Favorite">
+                    <md-icon md-svg-icon="./static/imgs/icons/favorite.svg"></md-icon>
+                  </md-button>
+                  <md-button>Repost</md-button>
+                  <md-button>Reply</md-button>
+                </md-card-actions>
+              </md-card>
+            </div>
+          </md-content>
+        </div>
+      </div>
+    </div>
+  </md-content>
+
+  <md-sidenav md-component-id="right" md-is-locked-open="true" layout="column" layout-align="start none" class="user-sidenav">
+    <div ng-repeat="tag in $user.$state.tags" layout-align="center none" layout="column">
+      <md-button ui-sref="tag({tag: tag.label.substring(1)})" class="centerAlign">
+        {{tag.label}}
+      </md-button>
+    </div>
+  </md-sidenav>
 <div layout-fill layout-margin layout-padding layout="row">
 <div layout="column">
   <md-card>

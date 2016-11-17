@@ -20,14 +20,13 @@
                                 md-items="item in $app.querySearch($app.searchText)"
                                 md-item-text="item.display"
                                 md-min-length="0"
-                                placeholder="What is your favorite US state?">
+                                placeholder="What would you like to search for?">
                             <md-item-template>
                                 <span md-highlight-text="$app.searchText"
                                       md-highlight-flags="^i">{{item.display}}</span>
                             </md-item-template>
                             <md-not-found>
-                                No states matching "{{$app.searchText}}" were found.
-                                <a ng-click="$app.newState($app.searchText)">Create a new one!</a>
+                                No items matching "{{$app.searchText}}" were found.
                             </md-not-found>
                         </md-autocomplete>
                     </md-content>
@@ -43,7 +42,7 @@
                             </md-button>
                             <md-menu-content width="4">
                                 <md-menu-item>
-                                    <md-button ui-sref="user.editUser">
+                                    <md-button ui-sref="editUser">
                                         <md-icon md-svg-src="/static/imgs/icons/ic_build_24px.svg"
                                                  md-menu-align-target></md-icon>
                                         Edit Profile

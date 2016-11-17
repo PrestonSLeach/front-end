@@ -1,16 +1,18 @@
 export class EditUserService {
 
-  constructor ($log, $http, $cookies, $config) {
+  constructor ($log, $http, $cookies, $config, $location) {
     'ngInject'
     this.$http = $http
     this.$cookies = $cookies
     this.$config = $config
+    this.$location = $location
     this.populateProfileInfo()
     $log.debug('EditUserService instantiated')
   }
 
   editUser () {
     let cookies = this.$cookies
+    let location = this.$location
     this.inProgress = false
     this.$http({
       method: 'PATCH',
@@ -33,6 +35,7 @@ export class EditUserService {
         }
       }
     }).then(function successCallback (response) {
+      location.path('/user')
       console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
@@ -41,6 +44,7 @@ export class EditUserService {
 
   deleteAccount () {
     let cookies = this.$cookies
+    let location = this.$location
     this.$http({
       method: 'DELETE',
       url: 'http://localhost:8080/users/@' + cookies.get('username'),
@@ -54,6 +58,7 @@ export class EditUserService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
+      location.path('/login')
       console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
@@ -83,7 +88,9 @@ export class EditUserService {
   }
 
   clear () {
+    let location = this.$location
     this.inProgress = false
+    location.path('/user')
     this.populateProfileInfo
   }
 

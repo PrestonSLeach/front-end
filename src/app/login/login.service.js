@@ -17,6 +17,9 @@ export class LoginService {
   }
 
   signUp () {
+    let cookies = this.$cookies
+    let location = this.$location
+    let user = this.user
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/users',
@@ -27,15 +30,18 @@ export class LoginService {
       },
       data: {
         'credentials': {
-          username: this.username,
-          password: this.password
+          username: this.user.username,
+          password: this.user.password
         },
         'profile': {
-          email: this.email
+          email: this.user.email
         }
       }
     }).then(function successCallback (response) {
       console.log(response.data)
+      cookies.put('username', user.username)
+      cookies.put('password', user.password)
+      location.path('/home')
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -64,13 +70,13 @@ export class LoginService {
         cookies.put('username', user.username)
         cookies.put('password', user.password)
         // console.log(cookies.getAll())
-        location.path("/home")
+        location.path('/home')
       } else {
         console.log(response)
       }
     }, function errorCallback (response) {
       console.log(response)
-      window.alert("You entered invalid credentials. Please try again.")
+      window.alert('You entered invalid credentials. Please try again.')
     })
   }
 
