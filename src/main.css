@@ -65,17 +65,17 @@ svg {
   filter: blur(5px);
 }
 
-.otherBackground {
+/*.otherBackground {
   background-image: url('../static/imgs/icons/background.jpg');
   position: fixed;
   top: 0;
-  left: 0;
+  left: 0;*/
 
   /* Preserve aspet ratio */
-  min-width: 100%;
+  /*min-width: 100%;
   min-height: 100%;
   filter: blur(5px);
-}
+}*/
 
 .content {
   background: white;
