@@ -1,0 +1,16 @@
+<h1>Followers</h1>
+<md-content>
+  <div>
+    <div class="users-pane" ng-repeat="followers in $followers.$state.followers">
+      <div ng-cloak="" class="carddemoBasicUsage">
+        <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
+          <div flex-xs="" flex-gt-xs="50" layout="column">
+            <p>
+              {{ $userView.$state.getFollowers }}
+            </p>
+          </div>
+        </md-content>
+      </div>
+    </div>
+  </div>
+</md-content>
