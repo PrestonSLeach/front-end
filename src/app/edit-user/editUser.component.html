@@ -1,25 +1,26 @@
-<md-card>
-  <md-content layout-padding="">
+<div class="background-image"></div>
+<div layout="column" layout-align="center center">
+  <md-content class = 'editUserForm'>
     <form name="$editUser.$state.editUserForm">
-      <div layout-gt-sm="column">
+      <div flex class="loginContainer" layout="column" layout-align="center center">
         <md-input-container class="md-block" flex-gt-sm="">
           <h1>{{$editUser.$state.$cookies.get('username')}}</h1>
         </md-input-container>
           <div flex="5" hide-xs="" hide-sm="">
             <!-- Spacer //-->
           </div>
-        <md-input-container class="md-block" flex-gt-sm="">
+        <md-input-container class="md-block" flex-gt-sm="" layout-align="center center" >
           <label>FirstName</label>
             <input name="firstName" ng-model="$editUser.$state.user.firstName">
         </md-input-container>
-          <div flex="5" hide-xs="" hide-sm="">
+          <div flex="10" hide-xs="" hide-sm="">
             <!-- Spacer //-->
           </div>
-        <md-input-container class="md-block" flex-gt-sm="">
+        <md-input-container class="md-block" flex-gt-sm="" layout-align="center center">
           <label>LastName</label>
           <input name="lastName" ng-model="$editUser.$state.user.lastName">
         </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="">
+        <md-input-container class="md-block" flex-gt-sm="" layout-align="center center">
           <label>Email</label>
             <input name="email" ng-model="$editUser.$state.user.email">
         </md-input-container>

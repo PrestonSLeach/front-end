@@ -67,15 +67,6 @@ svg {
 
 .otherBackground {
   background-image: url('https://s-media-cache-ak0.pinimg.com/originals/b5/d9/32/b5d932109d42b4f59347324ab597c178.jpg');
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;
-  filter: blur(5px);
-}
 
 .content {
   background: white;
@@ -169,7 +160,16 @@ padding: 2px;
 margin: 4px;
 }
 
+<<<<<<< HEAD
 
 .tweets-pane {
   background-color: transparent;
+=======
+/*Edit user page*/
+.editUserForm {
+  width: 700px;
+  max-width: 23%;
+  height: 675px;
+  max-height: 100%
+>>>>>>> master
 }
