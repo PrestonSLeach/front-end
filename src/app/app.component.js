@@ -10,7 +10,7 @@ class AppController {
         self.isDisabled = false;
 
         // list of `state` value/display objects
-        this.loadAll();
+        this.loadTags();
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange = searchTextChange;
@@ -32,6 +32,7 @@ class AppController {
         function querySearch(query) {
             var results = query ? self.states.filter(createFilterFor(query)) : self.states,
                 deferred;
+            results = results.slice(0,5)
             if (self.simulateQuery) {
                 deferred = $q.defer();
                 $timeout(function () {
@@ -80,7 +81,7 @@ class AppController {
 
 
     }
-    loadAll () {
+    loadTags () {
         var allStates = []
         var control = this
         this.$http({
@@ -100,6 +101,31 @@ class AppController {
                 };
             });
             control.states = allStates
+        }, function errorCallback(response) {
+            console.log(response)
+        })
+    }
+
+    loadUsers () {
+        var allStates = []
+        var control = this
+        this.$http({
+            method: 'GET',
+            url: 'http://localhost:8080/users',
+            headers: {
+                'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000/'
+            }
+        }).then(function successCallback(response) {
+            allStates = response.data
+            allStates = allStates.map(function (state) {
+                return {
+                    value: state.label.substring(1),
+                    display: state.label
+                };
+            });
+            control.states.append(allStates)
         }, function errorCallback(response) {
             console.log(response)
         })
