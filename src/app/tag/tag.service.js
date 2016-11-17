@@ -29,15 +29,24 @@ repostTweet (tweetId,type) {
         }
       }
     }).then(function successCallback (response) {
-      console.log(response)
+
     }, function errorCallback (response) {
       console.log(response)
     })
   }
 
+
+    isAuthor = function(username) {
+      if (username === this.$cookies.get('username'))
+        return true;
+      else
+        return false;
+
+    }
+
   deleteTweet (tweetId) {
       let cookies = this.$cookies
-      let tweetService = this
+      let tagService = this
       this.$http({
         method: 'DELETE',
         url: 'http://localhost:8080/tweets/'+tweetId,
@@ -51,8 +60,7 @@ repostTweet (tweetId,type) {
             password: cookies.get('password')
         }
       }).then(function successCallback (response) {
-        console.log(response.data)
-        tweetService.getTweetsByTag(tweetService.tag)
+        tagService.getTweetsByTag(tagService.tag)
       }, function errorCallback (response) {
         console.log(response)
       })
@@ -77,7 +85,6 @@ repostTweet (tweetId,type) {
             .join(' '))
           return tweet
         })
-      console.log(tagService.tweets[0].content)
     }, function errorCallback (response) {
       console.log(response)
     })

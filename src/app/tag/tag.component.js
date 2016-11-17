@@ -2,14 +2,18 @@ import templateUrl from './tag.component.html'
 
 /* @ngInject */
 class TagController {
-  constructor ($log, $tag, $stateParams, $scope) {
+  constructor ($log, $tag, $stateParams, $scope, $cookies) {
     this.$state = $tag
+    this.$cookies = $cookies
     // this.$state.init($stateParams.tag)
-    this.tag = $stateParams.tag
-    $tag.getTweetsByTag(this.tag)
+    $tag.tag = $stateParams.tag
+    $tag.getTweetsByTag($tag.tag)
     // $scope.imagePath = './static/imgs/washedout.png'
     $log.debug('TagController instantiated')
+
+
   }
+
 }
 
 export const tag = {
