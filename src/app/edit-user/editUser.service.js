@@ -78,6 +78,7 @@ export class EditUserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
+      userWorks.user.username = response.data.profile.username
       userWorks.user.firstName = response.data.profile.firstName
       userWorks.user.lastName = response.data.profile.lastName
       userWorks.user.phoneNumber = response.data.profile.phoneNumber

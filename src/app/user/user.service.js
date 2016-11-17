@@ -56,6 +56,46 @@ export class UserService {
     })
   }
 
+  followUser () {
+    let cookies = this.$cookies
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:8080/users/@' + '/follow',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      },
+      data: {
+        username: cookies.get('username'),
+        password: cookies.get('password')
+      }
+    }).then(function successCallback (response) {
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
+  unfollowUser () {
+    let cookies = this.$cookies
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:8080/users/@' + '/unfollow',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      },
+      data: {
+        username: cookies.get('username'),
+        password: cookies.get('password')
+      }
+    }).then(function successCallback (response) {
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
   user = {
     username: '',
     firstName: '',
