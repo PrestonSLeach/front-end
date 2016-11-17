@@ -2,9 +2,10 @@ import templateUrl from './app.component.html'
 
 /* @ngInject */
 class AppController {
-    constructor($log, $http, $q, $timeout, $location, $login) {
+    constructor($log, $http, $q, $timeout, $cookies, $location, $login) {
         var self = this;
         this.$http = $http
+        this.$cookies = $cookies
         this.$location = $location
         this.$login = $login
         self.simulateQuery = false;
@@ -12,6 +13,7 @@ class AppController {
 
         // list of `state` value/display objects
         this.loadTags();
+        this.loadUsers();
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange = searchTextChange;
@@ -27,7 +29,8 @@ class AppController {
 
         this.openProfile = function() {
           //redirect to user profile
-          console.log('open profile')
+          console.log('profiel pressed')
+          this.$location.path('/user/'+this.$cookies.get('username'))
         }
 
         function querySearch(query) {
@@ -52,21 +55,12 @@ class AppController {
         function selectedItemChange(item) {
             $log.info('Item changed to ' + JSON.stringify(item));
             if (item.display.charAt(0)==='#') {
-              console.log('entered right')
               this.$location.path('/tag/'+item.value)
             } else if (item.display.charAt(0)==='@') {
-
+              this.$location.path('/user/'+item.value)
             }
         }
 
-        /**
-         * Build `states` list of key/value pairs
-         */
-
-
-        /**
-         * Create filter function for a query string
-         */
         function createFilterFor(query) {
             var lowercaseQuery = angular.lowercase(query);
 
@@ -109,7 +103,7 @@ class AppController {
 
     loadUsers () {
         var allStates = []
-        var control = this
+        var controll = this
         this.$http({
             method: 'GET',
             url: 'http://localhost:8080/users',
@@ -122,11 +116,13 @@ class AppController {
             allStates = response.data
             allStates = allStates.map(function (state) {
                 return {
-                    value: state.label.substring(1),
-                    display: state.label
+                    value: state.username,
+                    display: '@'+state.username
                 };
             });
-            control.states.append(allStates)
+            console.log(controll.states)
+            console.log(allStates)
+            controll.states = controll.states.concat(allStates)
         }, function errorCallback(response) {
             console.log(response)
         })

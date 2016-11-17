@@ -18,6 +18,18 @@
           flex: 2;
 }
 
+.followButton {
+  background-color: #1976D2;
+  color: white;
+  font-weight: bold;
+
+}
+
+.followButton:not([disabled]):hover {
+  background-color: #1565C0;
+  color: white;
+}
+
 svg {
     fill: inherit;
 }

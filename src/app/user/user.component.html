@@ -1,10 +1,5 @@
 <div layout="row" class="full-width">
     <md-content layout="column" layout-align="start none" layout-fill>
-        <div ng-show="!$user.$state.users.length" layout-align="center none" layout="column">
-            <p style="text-align: center">
-                This tag has never been used.
-            </p>
-        </div>
         <div>
             <div class="users-pane" ng-repeat="tweet in $user.$state.tweets">
                 <div ng-cloak="" class="carddemoBasicUsage">
@@ -60,10 +55,7 @@
                      layout-align="center center">
             </div>
             <!-- Sidebar brand name -->
-            <a data-toggle="dropdown" class="profileEmail" href="#settings-dropdown" layout="row"
-               layout-align="center center">
-                {{$user.state.user.email}}
-            </a>
+            <md-button class="followButton">Follow</md-button>
         </div>
         <md-content>
             <div class="follow" layout="row" layout-align="space-around">
@@ -76,7 +68,7 @@
         <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)" class="noright">
             <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar"/>
             <p>{{ person.name }}</p>
-            <md-button class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat"
+            <md-button class="md-secondary followButton" ng-click="doSecondaryAction($event)" aria-label="Chat"
                        md-svg-icon="communication:message">Follow
             </md-button>
         </md-list-item>
