@@ -14,6 +14,11 @@ export class LoginService {
     this.user.username = $cookies.get('username')
     this.repeatPassword
     $log.debug('HomeController instantiated')
+    this.isLoggedIn = false
+  }
+
+  redirect () {
+    this.$location.path('/login')
   }
 
   signUp () {
@@ -52,6 +57,7 @@ export class LoginService {
     let user = this.user
     let window = this.$window
     let location = this.$location
+    let loginService = this
 
     this.$http({
       method: 'POST',
@@ -70,6 +76,7 @@ export class LoginService {
         cookies.put('username', user.username)
         cookies.put('password', user.password)
         // console.log(cookies.getAll())
+        loginService.isLoggedIn = true
         location.path('/home')
       } else {
         console.log(response)

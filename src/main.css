@@ -37,6 +37,13 @@ md-sidenav.md-locked-open {
   color: white;
 }
 
+.unfollowButton {
+  background-color: #f42a1f;
+  color: white;
+  font-weight: bold;
+
+}
+
 svg {
     fill: inherit;
 }
