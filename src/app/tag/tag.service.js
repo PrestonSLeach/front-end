@@ -27,7 +27,7 @@ export class TagService {
           tweet.content = tagService.$sce.trustAsHtml(tweet.content
             .split(' ')
             .map(word => 
-              (word.substring(0, 1) === '#') ? "<a href='tag/" + word.substring(1) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) : 
+              (word.substring(0, 1) === '#') ? "<a href='tag/" + word.match(/\w+/) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) : 
               (word.substring(0, 1) === '@') ? "<a href='user/" + word.substring(1).toLowerCase() + "' style='text-decoration: none'>" + word + "</a>" : word)
             .join(' '))
           return tweet
