@@ -25,7 +25,7 @@ export class TagService {
         .map(tweet => {
           tweet.content = tagService.$sce.trustAsHtml(tweet.content
             .split(' ')
-            .map(word => (word.substring(0, 1) === '#') ? "<md-button ui-sref='tag({tag:" + word.substring(1) + "})'><a href='tag/" + word.substring(1) + "'>" + word + "</a></md-button>" : word)
+            .map(word => (word.substring(0, 1) === '#') ? "<md-button ui-sref='tag({tag:" + word.substring(1) + "})'><a href='tag/" + word.substring(1) + "' style='text-decoration: none'>" + word + "</a></md-button>" : word)
             .join(' '))
           return tweet
         })
@@ -39,7 +39,7 @@ export class TagService {
     let tagService = this
     this.$http({
       method: 'GET',
-      url: 'http://localhost:8080/tags/recents',
+      url: 'http://localhost:8080/tags/trending',
       header: {
         'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
         'Content-Type': 'application/json',
