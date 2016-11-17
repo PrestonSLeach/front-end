@@ -12,7 +12,6 @@ class AppController {
 
         // list of `state` value/display objects
         this.loadTags();
-        this.loadUsers();
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange = searchTextChange;
@@ -95,6 +94,7 @@ class AppController {
                 };
             });
             control.states = allStates
+            control.loadUsers();
         }, function errorCallback(response) {
             console.log(response)
         })
