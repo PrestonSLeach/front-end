@@ -1,96 +1,93 @@
-<div layout="row" layout-fill>
-  <md-content layout="column" layout-align="start none" class="main-content">
-    <div ng-show="!$user.$state.users.length" layout-align="center none" layout="column">
-      <p style="text-align: center">
-        This tag has never been used.
-      </p>
-    </div>
-    <div>
-      <div class="users-pane" ng-repeat="tweet in $user.$state.tweets">
-        <div ng-cloak="" class="carddemoBasicUsage">
-          <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
-            <div flex-xs="" flex-gt-xs="50" layout="column">
-              <md-card>
-                <md-card-header>
-                  <md-card-avatar>
-                    <img class="md-user-avatar" src="/static/imgs/icons/person_black.svg"/>
-                  </md-card-avatar>
-                  <md-card-header-text>
-                    <span class="md-title">{{ tweet.author.username }}</span>
-                  </md-card-header-text>
-                  <md-button class="md-icon-button" aria-label="More">
-                    <md-icon md-svg-icon="/static/imgs/icons/more_vert.svg"></md-icon>
-                  </md-button>
-                </md-card-header>
-                <md-card-content>
-                  <p>
-                    {{ tweet.content }}
-                  </p>
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="space-around center">
-                  <md-button class="md-icon-button md-accent" aria-label="Favorite">
-                    <md-icon md-svg-icon="./static/imgs/icons/favorite.svg"></md-icon>
-                  </md-button>
-                  <md-button>Repost</md-button>
-                  <md-button>Reply</md-button>
-                </md-card-actions>
-              </md-card>
-            </div>
-          </md-content>
+<div layout="row" class="full-width">
+    <md-content layout="column" layout-align="start none" class="main-content" layout-fill>
+        <div ng-show="!$user.$state.users.length" layout-align="center none" layout="column">
+            <p style="text-align: center">
+                This tag has never been used.
+            </p>
         </div>
-      </div>
-    </div>
-  </md-content>
+        <div>
+            <div class="users-pane" ng-repeat="tweet in $user.$state.tweets">
+                <div ng-cloak="" class="carddemoBasicUsage">
+                    <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
+                        <div flex-xs="" flex-gt-xs="50" layout="column">
+                            <md-card>
+                                <md-card-header>
+                                    <md-card-avatar>
+                                        <img class="md-user-avatar" src="/static/imgs/icons/person_black.svg"/>
+                                    </md-card-avatar>
+                                    <md-card-header-text>
+                                        <span class="md-title">{{ tweet.author.username }}</span>
+                                    </md-card-header-text>
+                                    <md-button class="md-icon-button" aria-label="More">
+                                        <md-icon md-svg-icon="/static/imgs/icons/more_vert.svg"></md-icon>
+                                    </md-button>
+                                </md-card-header>
+                                <md-card-content>
+                                    <p>
+                                        {{ tweet.content }}
+                                    </p>
+                                </md-card-content>
+                                <md-card-actions layout="row" layout-align="space-around center">
+                                    <md-button class="md-icon-button md-accent" aria-label="Favorite">
+                                        <md-icon md-svg-icon="./static/imgs/icons/favorite.svg"></md-icon>
+                                    </md-button>
+                                    <md-button>Repost</md-button>
+                                    <md-button>Reply</md-button>
+                                </md-card-actions>
+                            </md-card>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+    </md-content>
 
-  <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
-                      md-whiteframe="4">
-              <div class="sidebar-header header-cover" style="background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);" layout="column">
-          <!-- Top bar -->
-          <div class="top-bar"></div>
-          <!-- Sidebar brand image -->
-          <div class="sidebar-image" layout="row" layout-fill layout-align="center">
-              <img class="profileImage" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53474/atom_profile_01.jpg" layout-align="center center">
-          </div>
-          <!-- Sidebar brand name -->
-          <a data-toggle="dropdown" class="profileEmail" href="#settings-dropdown" layout="row" layout-align="center center">
-              john.doe@gmail.com
-          </a>
-      </div>
-              <md-content  ng-controller="LeftCtrl">
-                <div class="follow" layout="row" layout-align="space-around">
-                  <a>4 Followers</a>
-                  <a>20 Following</a>
-                  </div>
-              </md-content>
-            <md-divider class="navBarTopDivider"></md-divider>
-            <md-subheader class="md-no-sticky">Recommended People To Follow</md-subheader>
-  <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)" class="noright">
-      <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar"/>
-      <p>{{ person.name }}</p>
-      <md-button class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat"
-                 md-svg-icon="communication:message">Follow
-      </md-button>
-  </md-list-item>
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
+                md-whiteframe="4" layout="column" layout-align="start none">
+        <div class="sidebar-header header-cover"
+             style="background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);"
+             layout="column">
+            <!-- Top bar -->
+            <div class="top-bar"></div>
+            <!-- Sidebar brand image -->
+            <div class="sidebar-image" layout="row" layout-fill layout-align="center">
+                <img class="profileImage" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53474/atom_profile_01.jpg"
+                     layout-align="center center">
+            </div>
+            <!-- Sidebar brand name -->
+            <a data-toggle="dropdown" class="profileEmail" href="#settings-dropdown" layout="row"
+               layout-align="center center">
+                {{$user.state.user.email}}
+            </a>
+        </div>
+        <md-content>
+            <div class="follow" layout="row" layout-align="space-around">
+                <a>4 Followers</a>
+                <a>20 Following</a>
+            </div>
+        </md-content>
+        <md-divider class="navBarTopDivider"></md-divider>
+        <md-subheader class="md-no-sticky">Recommended People To Follow</md-subheader>
+        <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)" class="noright">
+            <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar"/>
+            <p>{{ person.name }}</p>
+            <md-button class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat"
+                       md-svg-icon="communication:message">Follow
+            </md-button>
+        </md-list-item>
 
-  <md-divider></md-divider>
+        <md-divider></md-divider>
 
-  <md-subheader class="md-no-sticky">What's Trending</md-subheader>
-  <md-list-item class="secondary-button-padding" ng-click="doPrimaryAction($event)">
-      <p>Click anywhere to fire the primary action, or the button to fire the secondary</p>
-  </md-list-item>
+        <md-subheader class="md-no-sticky">What's Trending</md-subheader>
+        <md-list-item class="secondary-button-padding" ng-click="doPrimaryAction($event)">
+            <p>Click anywhere to fire the primary action, or the button to fire the secondary</p>
+        </md-list-item>
 
-  <md-divider></md-divider>
+        <md-divider></md-divider>
 
-  <md-subheader class="md-no-sticky">Tweet of The Week</md-subheader>
-  <md-list-item>
-      <p>Click anywhere to fire the secondary action</p>
-  </md-list-item>
-          </md-sidenav>
-<div layout-fill layout-margin layout-padding layout="row">
-<div layout="column">
-  <md-card>
-      <md-button ui-sref="editUser" ng-show="!$user.$state.$editUser.inProgress">Edit Profile</md-button>
-  </md-card>
-</div>
-<ui-view flex="70"></ui-view>
+        <md-subheader class="md-no-sticky">Tweet of The Week</md-subheader>
+        <md-list-item>
+            <p>Click anywhere to fire the secondary action</p>
+        </md-list-item>
+    </md-sidenav>
 </div>

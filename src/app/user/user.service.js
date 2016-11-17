@@ -23,7 +23,7 @@ export class UserService {
         let userService = this
         this.$http({
             method: 'GET',
-            url: 'http://localhost:8080/users/' + username + '/tweets/',
+            url: 'http://localhost:8080/users/@' + username + '/tweets/',
             headers: {
                 'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
                 'Content-Type': 'application/json',

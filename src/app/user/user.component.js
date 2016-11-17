@@ -5,8 +5,8 @@ class UserController {
   constructor ($log, $user, $editUser, $mdSidenav, $timeout, $scope, $stateParams) {
     this.$state = $user
     // this.$state.init($stateParams.tag)
-    this.user = $stateParams.tag
-    $user.getTweetsByUser(this.user)
+    this.username = $stateParams.user
+    $user.getTweetsByUser(this.username)
     this.message = 'User HTML not yet done'
     $editUser.inProgress = false
     $log.debug('UserController instantiated')
