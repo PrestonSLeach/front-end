@@ -3,8 +3,8 @@ import { configure } from './user.config'
 import { UserService } from './user.service'
 import { userView } from './userView.component'
 import { UserViewService } from './userView.service'
-import { followers } from './followers.component'
-import { FollowersService } from './followers.service'
+import { followers } from './followers/followers.component'
+import { FollowersService } from './followers/followers.service'
 
 export default
   angular
