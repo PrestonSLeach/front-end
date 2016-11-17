@@ -1,15 +1,70 @@
 export class TagService {
   initialized = false
 
-  constructor ($log, $config, $http, $tweet, $sce) {
+  constructor ($log, $config, $http, $tweet, $sce, $cookies) {
     'ngInject'
     this.$config = $config
     this.$http = $http
     this.$tweet = $tweet
     this.$sce = $sce
+    this.$cookies = $cookies
     this.getMostRecentTags()
     $log.debug('TagService instantiated!')
   }
+
+repostTweet (tweetId,type) {
+    let cookies = this.$cookies
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:8080/tweets/'+tweetId+'/'+type,
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      },
+      data: {
+        'credentials': {
+          username: cookies.get('username'),
+          password: cookies.get('password')
+        }
+      }
+    }).then(function successCallback (response) {
+
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
+
+    isAuthor = function(username) {
+      if (username === this.$cookies.get('username'))
+        return true;
+      else
+        return false;
+
+    }
+
+  deleteTweet (tweetId) {
+      let cookies = this.$cookies
+      let tagService = this
+      this.$http({
+        method: 'DELETE',
+        url: 'http://localhost:8080/tweets/'+tweetId,
+        headers: {
+          'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:3000/'
+        },
+        data: {
+            username: cookies.get('username'),
+            password: cookies.get('password')
+        }
+      }).then(function successCallback (response) {
+        tagService.getTweetsByTag(tagService.tag)
+      }, function errorCallback (response) {
+        console.log(response)
+      })
+    }
 
   getTweetsByTag (tag) {
     let tagService = this
@@ -32,7 +87,6 @@ export class TagService {
             .join(' '))
           return tweet
         })
-      console.log(tagService.tweets[0].content)
     }, function errorCallback (response) {
       console.log(response)
     })
