@@ -66,7 +66,7 @@ svg {
 }
 
 .otherBackground {
-  background-image: url('../static/imgs/icons/background.jpg');
+  background-image: url('https://s-media-cache-ak0.pinimg.com/originals/b5/d9/32/b5d932109d42b4f59347324ab597c178.jpg');
   position: fixed;
   top: 0;
   left: 0;
@@ -114,9 +114,8 @@ svg {
   max-width: 80%;
 }
 /* tweet card css */
-
 .carddemoBasicUsage .card-media {
-  background-color: #999999; }
+  background-color: red; }
 .md-padding {
   margin: 0px;
   padding: 0px;
@@ -168,4 +167,9 @@ padding: 2px;
 }
 .follow {
 margin: 4px;
+}
+
+
+.tweets-pane {
+  background-color: transparent;
 }
