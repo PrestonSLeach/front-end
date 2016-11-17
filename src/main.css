@@ -96,3 +96,26 @@
 .search {
   background-color: transparent;
 }
+
+/* profile sidebar */
+.profileImage {
+
+    width: @sidebar-desktop-width/4 - @sidebar-padding;
+    height: @sidebar-desktop-width/4 - @sidebar-padding;
+    margin: @sidebar-padding;
+    border-radius: 50%;
+
+}
+
+.profileEmail {
+  text-align: justify;
+  text-justify: inter-word;
+color: white;
+}
+.navBarTopDivider {
+margin: 2px;
+padding: 2px;
+}
+.follow {
+margin: 4px;
+}

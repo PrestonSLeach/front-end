@@ -8,7 +8,7 @@ export class UserService {
         this.$editUser = $editUser
         this.$http = $http
         this.$cookies = $cookies
-        this.getMostRecentTweets
+        this.getMostRecentUsers
         $log.debug('UserService instantiated!')
         this.populateProfileInfo()
 
@@ -18,7 +18,7 @@ export class UserService {
         return this.initialized !== false
     }
 
-    getTweetsByTag(username) {
+    getTweetsByUser(username) {
         let userService = this
         this.$http({
             method: 'GET',
