@@ -8,7 +8,8 @@ export class UserService {
     this.$editUser = $editUser
     this.$http = $http
     this.$cookies = $cookies
-    this.getMostRecentTweets
+    this.getMostRecentUsers
+
     $log.debug('UserService instantiated!')
     this.populateProfileInfo()
   }
@@ -17,11 +18,11 @@ export class UserService {
     return this.initialized !== false
   }
 
-  getTweetsByTag (username) {
+  getTweetsByUser (username) {
     let userService = this
     this.$http({
       method: 'GET',
-      url: 'http://localhost:8080/users/' + username + '/tweets/',
+      url: 'http://localhost:8080/users/@' + username + '/tweets/',
       headers: {
         'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
         'Content-Type': 'application/json',
@@ -56,11 +57,11 @@ export class UserService {
     })
   }
 
-  followUser () {
+  followUser (username) {
     let cookies = this.$cookies
     this.$http({
       method: 'POST',
-      url: 'http://localhost:8080/users/@' + '/follow',
+      url: 'http://localhost:8080/users/@' + username + '/follow',
       headers: {
         'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
         'Content-Type': 'application/json',
@@ -76,11 +77,11 @@ export class UserService {
     })
   }
 
-  unfollowUser () {
+  unfollowUser (username) {
     let cookies = this.$cookies
     this.$http({
       method: 'POST',
-      url: 'http://localhost:8080/users/@' + '/unfollow',
+      url: 'http://localhost:8080/users/@' + username + '/unfollow',
       headers: {
         'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
         'Content-Type': 'application/json',
