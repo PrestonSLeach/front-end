@@ -97,6 +97,40 @@ export class UserService {
     })
   }
 
+  getFollowers (username) {
+    let userWorks = this
+    this.$http({
+      method: 'GET',
+      url: 'http://localhost:8080/users/@' + username + '/followers',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      }
+    }).then(function successCallback (response) {
+      userWorks.user.username = response.data.profile.username
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
+  getFollowing (username) {
+    let userWorks = this
+    this.$http({
+      method: 'GET',
+      url: 'http://localhost:8080/users/@' + username + '/following',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      }
+    }).then(function successCallback (response) {
+      userWorks.user.username = response.data.profile.username
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
   user = {
     username: '',
     firstName: '',
