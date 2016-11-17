@@ -12,6 +12,22 @@ class UserController {
     $log.debug('UserController instantiated')
 
 
+    this.likeTweet = function() {
+console.log('like clicked')
+    }
+
+    this.repostTweet = function() {
+console.log('repost clicked')
+    }
+
+    this.replyTweet = function() {
+console.log('reply clicked')
+    }
+
+    this.moreTweet = function() {
+      console.log('more clicked')
+    }
+
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.isOpenRight = function(){
         return $mdSidenav('right').isOpen();
