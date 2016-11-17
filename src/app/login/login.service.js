@@ -17,6 +17,10 @@ export class LoginService {
     this.isLoggedIn = false
   }
 
+  redirect () {
+    this.$location.path('/login')
+  }
+
   signUp () {
     let cookies = this.$cookies
     let location = this.$location

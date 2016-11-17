@@ -2,7 +2,10 @@ import templateUrl from './home.component.html'
 
 /* @ngInject */
 class HomeController {
-  constructor ($log, $home, $game, $user, $cookies) {
+  constructor ($log, $home, $game, $user, $cookies, $state, $login) {
+    if (!$login.isLoggedIn) {
+      $state.go('login')
+    }
     this.$state = $home
     this.$game = $game
     this.$user = $user
