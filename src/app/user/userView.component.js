@@ -4,13 +4,29 @@ import templateUrl from './userView.component.html'
 class UserViewController {
   constructor ($log, $userView, $editUser, $mdSidenav, $timeout, $scope, $stateParams) {
     this.$state = $userView
-    this.$state.init($stateParams.tag)
+    // this.$state.init($stateParams.tag)
     this.username = $stateParams.user
-    $user.getTweetsByUser(this.username)
+    $userView.getTweetsByUser(this.username)
     this.message = 'User HTML not yet done'
     $editUser.inProgress = false
     $log.debug('UserController instantiated')
 
+
+    this.likeTweet = function() {
+console.log('like clicked')
+    }
+
+    this.repostTweet = function() {
+console.log('repost clicked')
+    }
+
+    this.replyTweet = function() {
+console.log('reply clicked')
+    }
+
+    this.moreTweet = function() {
+      console.log('more clicked')
+    }
 
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.isOpenRight = function(){
@@ -119,7 +135,6 @@ class UserViewController {
                 });
         }
     }
-
   }
 
   // continueDisabled () {

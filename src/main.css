@@ -17,7 +17,19 @@
   -webkit-flex: 2;
           flex: 2;
 }
-
+.md-tweet-title {
+  font-weight: bolder;
+  color: #1976D2;
+  text-decoration: none;
+}
+md-sidenav,
+md-sidenav.md-locked-open-add-active,
+md-sidenav.md-closed.md-locked-open-add-active,
+md-sidenav.md-locked-open {
+  width: 380px;
+  min-width: 380px;
+  max-width: 380px;
+}
 .followButton {
   background-color: #1976D2;
   color: white;
