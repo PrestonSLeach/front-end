@@ -1,10 +1,11 @@
 export class TagService {
   initialized = false
 
-  constructor ($log, $config, $http, $sce) {
+  constructor ($log, $config, $http, $tweet, $sce) {
     'ngInject'
     this.$config = $config
     this.$http = $http
+    this.$tweet = $tweet
     this.$sce = $sce
     this.getMostRecentTags()
     $log.debug('TagService instantiated!')
@@ -37,6 +38,7 @@ export class TagService {
 
   getMostRecentTags () {
     let tagService = this
+    let tweet = this.$tweet
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/tags/recents',
