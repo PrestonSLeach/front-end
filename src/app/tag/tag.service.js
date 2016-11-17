@@ -26,7 +26,9 @@ export class TagService {
         .map(tweet => {
           tweet.content = tagService.$sce.trustAsHtml(tweet.content
             .split(' ')
-            .map(word => (word.substring(0, 1) === '#') ? "<md-button ui-sref='tag({tag:" + word.substring(1) + "})'><a href='tag/" + word.substring(1) + "' style='text-decoration: none'>" + word + "</a></md-button>" : word)
+            .map(word => 
+              (word.substring(0, 1) === '#') ? "<a href='tag/" + word.substring(1) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) : 
+              (word.substring(0, 1) === '@') ? "<a href='user/" + word.substring(1).toLowerCase() + "' style='text-decoration: none'>" + word + "</a>" : word)
             .join(' '))
           return tweet
         })
