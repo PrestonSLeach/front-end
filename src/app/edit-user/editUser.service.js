@@ -6,7 +6,6 @@ export class EditUserService {
     this.$cookies = $cookies
     this.$config = $config
     this.$location = $location
-    this.populateProfileInfo()
     $log.debug('EditUserService instantiated')
   }
 
@@ -58,6 +57,8 @@ export class EditUserService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
+      cookies.remove('username')
+      cookies.remove('password')
       location.path('/login')
       console.log(response.data)
     }, function errorCallback (response) {
@@ -87,11 +88,10 @@ export class EditUserService {
     })
   }
 
-  clear () {
+  cancel () {
     let location = this.$location
     this.inProgress = false
     location.path('/user')
-    this.populateProfileInfo
   }
 
   user = {
