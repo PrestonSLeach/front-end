@@ -1,7 +1,8 @@
-import { user } from './user.states'
+import { user, userView } from './user.states'
 
 /* @ngInject */
 export function configure ($stateProvider) {
   $stateProvider
     .state(user)
+    .state(userView)
 }

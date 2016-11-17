@@ -43,7 +43,6 @@ export class LoginService {
         }
       }
     }).then(function successCallback (response) {
-      console.log(response.data)
       cookies.put('username', user.username)
       cookies.put('password', user.password)
       location.path('/home')
@@ -103,7 +102,6 @@ export class LoginService {
   loginClicked () {
     if (this.loginBoo) {
       this.login()
-      console.log('login user')
     } else {
       this.loginBoo = true
     }
@@ -114,7 +112,6 @@ export class LoginService {
       // verify password is the same
       // make sure post command works
       this.signUp()
-      console.log('sign up user')
     } else {
       this.loginBoo = false
     }
