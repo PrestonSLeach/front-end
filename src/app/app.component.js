@@ -2,11 +2,12 @@ import templateUrl from './app.component.html'
 
 /* @ngInject */
 class AppController {
-    constructor($log, $http, $q, $timeout, $location, $cookies) {
+    constructor($log, $http, $q, $timeout, $cookies, $location, $login) {
         var self = this;
         this.$http = $http
         this.$cookies = $cookies
         this.$location = $location
+        this.$login = $login
         self.simulateQuery = false;
         self.isDisabled = false;
 
