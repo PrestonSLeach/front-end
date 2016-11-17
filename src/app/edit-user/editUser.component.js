@@ -6,6 +6,7 @@ class editUserController {
     this.$state = $editUser
     $editUser.inProgress = true
     // $editUser.clear()
+    $editUser.populateProfileInfo()
     $log.debug('editUserController instantiated')
   }
 }
