@@ -2,13 +2,14 @@ export class UserService {
 
   initialized = false
 
-  constructor ($log, $config, $editUser, $http, $cookies) {
+  constructor ($log, $config, $editUser, $http, $cookies, $stateParams) {
     'ngInject'
     this.$config = $config
     this.$editUser = $editUser
     this.$http = $http
     this.$cookies = $cookies
     this.getMostRecentUsers
+    this.username = $stateParams.user
 
     $log.debug('UserService instantiated!')
     this.populateProfileInfo()
@@ -19,6 +20,7 @@ export class UserService {
   }
 
   getTweetsByUser (username) {
+    this.username = username
     let userService = this
     this.$http({
       method: 'GET',
@@ -72,6 +74,7 @@ export class UserService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
+      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -92,13 +95,13 @@ export class UserService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
+      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })
   }
 
   getFollowers (username) {
-    let userWorks = this
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/users/@' + username + '/followers',
@@ -108,14 +111,13 @@ export class UserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      userWorks.user.username = response.data.profile.username
+      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })
   }
 
   getFollowing (username) {
-    let userWorks = this
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/users/@' + username + '/following',
@@ -125,7 +127,7 @@ export class UserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      userWorks.user.username = response.data.profile.username
+      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })
