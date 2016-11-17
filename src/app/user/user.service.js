@@ -9,6 +9,7 @@ export class UserService {
         this.$http = $http
         this.$cookies = $cookies
         this.getMostRecentUsers
+
         $log.debug('UserService instantiated!')
         this.populateProfileInfo()
 
