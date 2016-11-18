@@ -108,7 +108,7 @@ export class LoginService {
   }
 
   signUpClicked () {
-    if (!this.loginBoo && this.password === this.repeatPassword) {
+    if (!this.loginBoo) {
       // verify password is the same
       // make sure post command works
       this.signUp()
