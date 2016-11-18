@@ -5,5 +5,4 @@ export class FollowersService {
     'ngInject'
     $log.debug('FollowersService')
   }
-
 }

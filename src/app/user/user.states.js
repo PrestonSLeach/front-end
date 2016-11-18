@@ -1,10 +1,6 @@
 export const user = {
-  // parent: 'app',
   name: 'user',
   url: '/user',
-  // resolve: {
-  //   user: (Users) => Users.all()
-  // },
   component: 'user'
 }
 
@@ -14,9 +10,6 @@ export const userView = {
   params: {
     user: user
   },
-  // resolve: {
-  //   user: (Users, $transition$) => Users.get($transition$.params().userName)
-  // },
   component: 'userView'
 }
 
@@ -28,9 +21,12 @@ export const followers = {
     user: user
   }
 }
-//
-// export const following = {
-//   name: 'user.following',
-//   url: '/following',
-//   component: 'following'
-// }
+
+export const following = {
+  name: 'user.following',
+  url: '/:user/following',
+  component: 'following',
+  params: {
+    user: user
+  }
+}
