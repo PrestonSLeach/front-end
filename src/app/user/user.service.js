@@ -2,11 +2,12 @@ export class UserService {
 
   initialized = false
 
-  constructor ($log, $config, $http, $cookies) {
+  constructor ($log, $config, $http, $cookies, $location) {
     'ngInject'
     this.$config = $config
     this.$http = $http
     this.$cookies = $cookies
+    this.$location = $location
     $log.debug('UserService instantiated!')
   }
 
@@ -52,6 +53,8 @@ export class UserService {
     })
   }
   getFollowers (username) {
+    let followerList = this
+    let location = this.$location
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/users/@' + username + '/followers',
@@ -61,13 +64,17 @@ export class UserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      console.log(response.data)
+      followerList.followers = response.data
+      followerList.followers.map(follower => follower.username)
+      location.path('/user/' + username + '/followers')
     }, function errorCallback (response) {
       console.log(response)
     })
   }
 
   getFollowing (username) {
+    let followingList = this
+    let location = this.$location
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/users/@' + username + '/following',
@@ -77,9 +84,13 @@ export class UserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      console.log(response.data)
+      followingList.following = response.data
+      followingList.following.map(following => following.username)
+      location.path('/user/' + username + '/following')
     }, function errorCallback (response) {
       console.log(response)
     })
   }
+
+  followers = []
 }
