@@ -116,7 +116,7 @@ export class TweetService {
       }
     }).then(function successfulCallBack (response) {
       console.log(response.data)
-      tweetService.userFeed = response.data
+      tweetService.tweets = response.data
       .map(tweet => {
           tweet.content = tweetService.$sce.trustAsHtml(tweet.content
             .split(' ')
