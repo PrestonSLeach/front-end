@@ -20,6 +20,7 @@ export class UserService {
 
   followUser (username) {
     let cookies = this.$cookies
+    let userService = this
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/users/@' + username + '/follow',
@@ -34,6 +35,7 @@ export class UserService {
       }
     }).then(function successCallback (response) {
       console.log(response.data)
+      userService.getFollowers(username)
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -41,6 +43,7 @@ export class UserService {
 
   unfollowUser (username) {
     let cookies = this.$cookies
+    let userService = this
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/users/@' + username + '/unfollow',
@@ -54,11 +57,12 @@ export class UserService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
-      console.log(response.data)
+      userService.getFollowers(username)
     }, function errorCallback (response) {
       console.log(response)
     })
   }
+
   getFollowers (username) {
     let followerList = this
     let location = this.$location
@@ -74,6 +78,12 @@ export class UserService {
       followerList.followers = response.data
       followerList.numOfFollowers = response.data.length
       followerList.followers.map(follower => follower.username)
+      followerList.isFollowing = response.data.some(follower => follower.username === followerList.$cookies.get('username'))
+      if(username === followerList.$cookies.get('username')) {
+        followerList.isUser = true
+      } else {
+        followerList.isUser = false
+      }
     }, function errorCallback (response) {
       console.log(response)
     })
