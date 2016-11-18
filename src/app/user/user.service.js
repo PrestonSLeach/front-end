@@ -8,6 +8,7 @@ export class UserService {
     this.$http = $http
     this.$cookies = $cookies
     this.$location = $location
+    this.isFollowing = false
     $log.debug('UserService instantiated!')
   }
 
@@ -90,6 +91,11 @@ export class UserService {
     }, function errorCallback (response) {
       console.log(response)
     })
+  }
+
+  followAvailable (username) {
+    let cookies = this.$cookies
+    console.log(this.getFollowing(cookies.get(username)))
   }
 
   followers = []

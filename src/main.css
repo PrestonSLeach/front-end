@@ -46,7 +46,11 @@ md-sidenav.md-locked-open {
   background-color: #f42a1f;
   color: white;
   font-weight: bold;
+}
 
+.unfollowButton:not([disabled]):hover {
+  background-color: #f42a1f;
+  color: white;
 }
 
 svg {
