@@ -12,6 +12,7 @@ export class HomeService {
 
   newTweet() {
     let cookies = this.$cookies
+    let homeService = this
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/tweets/',

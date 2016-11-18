@@ -8,6 +8,8 @@ export class UserViewService {
     this.$user
     this.getMostRecentUsers
     $user.username = $stateParams.user
+    $user.getFollowers($user.username);
+    $user.getFollowing($user.username);
 
     this.populateProfileInfo()
     $log.debug('UserViewService instantiated!')
