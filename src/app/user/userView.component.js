@@ -2,14 +2,17 @@ import templateUrl from './userView.component.html'
 
 /* @ngInject */
 class UserViewController {
-  constructor ($log, $userView, $editUser, $mdSidenav, $timeout, $scope, $stateParams) {
+  constructor ($log, $userView, $editUser, $mdSidenav, $timeout, $scope, $stateParams, $user) {
     this.$state = $userView
     // this.$state.init($stateParams.tag)
     this.username = $stateParams.user
+    $user.username = $stateParams.user
+    $user.getFollowers($user.username);
+    $user.getFollowing($user.username);
     $userView.getTweetsByUser(this.username)
     this.message = 'User HTML not yet done'
     $editUser.inProgress = false
-    $log.debug('UserController instantiated')
+    $log.debug('UserViewController instantiated')
 
     this.likeTweet = function () {
       console.log('like clicked')

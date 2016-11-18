@@ -18,8 +18,8 @@
       </div>
       <md-content>
           <div class="follow" layout="row" layout-align="space-around">
-              <md-button ng-click="$user.$state.getFollowers($user.$state.username)">{{$user.$state.numOfFollowers}} Followers</md-button>
-              <md-button ng-click="$user.$state.getFollowing($user.$state.username)">{{$user.$state.numOfFollowing}} Following</md-button>
+              <md-button href="/user/{{$user.$state.username}}/followers">{{$user.$state.numOfFollowers}} Followers</md-button>
+              <md-button href="/user/{{$user.$state.username}}/following">{{$user.$state.numOfFollowing}} Following</md-button>
           </div>
       </md-content>
       <md-divider class="navBarTopDivider"></md-divider>
