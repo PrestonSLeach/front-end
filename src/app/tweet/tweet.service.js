@@ -30,6 +30,10 @@ export class TweetService {
     })
   }
 
+  replyToTweet(tweetId) {
+
+  }
+
   respondToTweet (tweetId, type) {
     let tweetService = this
     let cookies = this.$cookies
