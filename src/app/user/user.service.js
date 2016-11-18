@@ -67,7 +67,6 @@ export class UserService {
       followerList.followers = response.data
       followerList.numOfFollowers = response.data.length
       followerList.followers.map(follower => follower.username)
-      location.path('/user/' + username + '/followers')
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -88,7 +87,6 @@ export class UserService {
       followingList.following = response.data
       followingList.numOfFollowing = response.data.length
       followingList.following.map(following => following.username)
-      location.path('/user/' + username + '/following')
     }, function errorCallback (response) {
       console.log(response)
     })
