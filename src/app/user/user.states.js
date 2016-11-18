@@ -20,14 +20,14 @@ export const userView = {
   component: 'userView'
 }
 
-// export const followers = {
-//   name: 'user.followers',
-//   url: '/:user/followers',
-//   component: 'followers',
-//   params: {
-//     user: user
-//   }
-// }
+export const followers = {
+  name: 'user.followers',
+  url: '/:user/followers',
+  component: 'followers',
+  params: {
+    user: user
+  }
+}
 //
 // export const following = {
 //   name: 'user.following',

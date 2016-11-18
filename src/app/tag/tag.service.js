@@ -26,7 +26,8 @@ repostTweet (tweetId,type) {
         'credentials': {
           username: cookies.get('username'),
           password: cookies.get('password')
-        }
+        },
+        content: ''
       }
     }).then(function successCallback (response) {
 
