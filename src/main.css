@@ -173,7 +173,5 @@ margin: 4px;
 /*Edit user page*/
 .editUserForm {
   width: 700px;
-  max-width: 23%;
-  height: 675px;
-  max-height: 100%
+  max-width: 80%;
 }
