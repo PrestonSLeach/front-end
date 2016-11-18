@@ -55,7 +55,6 @@ export class TweetService {
       }
     }).then(function successCallback (response) {
       tweetService.$state.reload()
-      console.log('success')
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -97,7 +96,6 @@ export class TweetService {
       }
     }).then(function successCallback (response) {
       tweetService.$state.reload()
-      console.log('success')
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -118,7 +116,6 @@ export class TweetService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
-      console.log('success')
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -148,7 +145,6 @@ export class TweetService {
   }
 
   formatContentForLinks(content) {
-    console.log(content)
     return content.split(' ')
     .map(word =>
       (word.substring(0, 1) === '#') ? "<a href='tag/" + word.match(/\w+/) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) :
@@ -168,23 +164,22 @@ export class TweetService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successfulCallBack (response) {
-      console.log(response.data)
       tweetService.tweets = response.data
       .map(tweet => {
-          let repost = tweet.repostof
-          while (repost) {
-            if(repost.content !== '' && repost.content !== undefined) {
-              tweet.repostContent = tweetService.$sce.trustAsHtml('"' + tweetService.formatContentForLinks(repost.content) + '"' + ' - ' + repost.author.username)
-            } if(repost.content === undefined ) {
-              tweet.flagDeleted = true
-            }
-            repost = repost.repostof
+        let repost = tweet.repostof
+        while (repost) {
+          if (repost.content !== '' && repost.content !== undefined) {
+            tweet.repostContent = tweetService.$sce.trustAsHtml('"' + tweetService.formatContentForLinks(repost.content) + '"' + ' - ' + repost.author.username)
+          } if (repost.content === undefined ) {
+            tweet.flagDeleted = true
           }
-          if(tweet.content) {
-            tweet.content = tweetService.$sce.trustAsHtml(tweetService.formatContentForLinks(tweet.content))
-          }
-          return tweet
-        })
+          repost = repost.repostof
+        }
+        if (tweet.content) {
+          tweet.content = tweetService.$sce.trustAsHtml(tweetService.formatContentForLinks(tweet.content))
+        }
+        return tweet
+      })
     }), function errorCallBack (response) {
       console.log(response)
     }
@@ -203,7 +198,6 @@ export class TweetService {
     }).then(function successCallback (response) {
       tweetService.tweets = response.data
         .map(tweet => {
-          console.log(tweet)
           tweet.content = tweetService.$sce.trustAsHtml(tweet.content
             .split(' ')
             .map(word =>
@@ -213,6 +207,39 @@ export class TweetService {
           tweet.this = tweetService
           return tweet
         })
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
+  getTweetsByUser (username) {
+    this.username = username
+    let tweetService = this
+    this.$http({
+      method: 'GET',
+      url: 'http://localhost:8080/users/@' + username + '/tweets/',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      }
+    }).then(function successCallback (response) {
+      tweetService.tweets = response.data
+      .map(tweet => {
+        let repost = tweet.repostof
+        while (repost) {
+          if (repost.content !== '' && repost.content !== undefined) {
+            tweet.repostContent = tweetService.$sce.trustAsHtml('"' + tweetService.formatContentForLinks(repost.content) + '"' + ' - ' + repost.author.username)
+          } if (repost.content === undefined ) {
+            tweet.flagDeleted = true
+          }
+          repost = repost.repostof
+        }
+        if (tweet.content) {
+          tweet.content = tweetService.$sce.trustAsHtml(tweetService.formatContentForLinks(tweet.content))
+        }
+        return tweet
+      })
     }, function errorCallback (response) {
       console.log(response)
     })

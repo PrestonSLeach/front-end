@@ -20,14 +20,12 @@ class AppController {
 
 
         this.openMenu = function($mdOpenMenu, ev) {
-          console.log('open menu clicked')
           originatorEv = ev;
           $mdOpenMenu(ev);
         }
 
         this.openProfile = function() {
           //redirect to user profile
-          console.log('profiel pressed')
           this.$location.path('/user/'+this.$cookies.get('username'))
         }
 
@@ -96,7 +94,6 @@ class AppController {
             control.states = allStates
             control.loadUsers();
         }, function errorCallback(response) {
-            console.log(response)
         })
     }
 
@@ -119,8 +116,6 @@ class AppController {
                     display: '@'+state.username
                 };
             });
-            // console.log(controll.states)
-            // console.log(allStates)
             controll.states = controll.states.concat(allStates)
         }, function errorCallback(response) {
             console.log(response)
