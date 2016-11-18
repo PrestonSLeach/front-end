@@ -1,5 +1,5 @@
 <div class="tweets-pane" ng-repeat="tweet in $tweet.$state.tweets">
-  <div ng-cloak="" class="carddemoBasicUsage" ng-hide="tweet.flagDeleted">
+  <div ng-cloak="" class="carddemoBasicUsage" ng-hide="(tweet.flagDeleted) ? true : (tweet.replyto) ? true : false">
     <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
       <div flex-xs="" flex-gt-xs="60" layout="column">
         <md-card>
@@ -18,8 +18,8 @@
             <p ng-bind-html="tweet.repostContent"></p>
             <p ng-bind-html="tweet.content"></p>
           </md-card-content>
-          <md-card-actions layout="row" layout-align="space-around center">
-            <md-button class="md-icon-button md-accent" aria-label="Reply" ng-click="$tweet.$state.respondToTweet(tweet.id,'reply')">
+          <md-card-actions layout="row" layout-align="space-around center" ng-hide="tweet.reply">
+            <md-button class="md-icon-button md-accent" aria-label="Reply" ng-click="tweet.reply = true; $tweet.$state.getReplies(tweet)">
               <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/reply.svg" style="color:red;font:bold"></md-icon>
             </md-button>
             <md-button class="md-icon-button md-accent" aria-label="Repeat" ng-click="$tweet.$state.respondToTweet(tweet.id,'repost')">
@@ -32,6 +32,33 @@
                   <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/delete.svg"></md-icon>
               </md-button>
           </md-card-actions>
+          <div ng-show="tweet.reply">
+            <div ng-repeat="reply in tweet.replies" layout="column">
+              <p>
+                {{ reply.content }} - {{ reply.author.username }}
+              </p>
+            </div>
+            <form name="replyForm">
+              <div layout-gt-sm="row" layout-align="center none">
+                <md-input-container class="md-block" flex-gt-sm="">
+                  <label>Reply</label>
+                    <input name="reply" ng-model="tweet.replyMessage">
+                </md-input-container>
+                  <div flex="5" hide-xs="" hide-sm="">
+                    <!-- Spacer //-->
+                  </div>
+                <md-button class="md-icon-button md-accent" aria-label="Reply" ng-click="$tweet.$state.replyToTweet(tweet)" ng-show="tweet.reply = !tweet.reply">
+                  <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/reply.svg" style="color:red;font:bold"></md-icon>
+                </md-button>
+              </div>
+              <style>
+                body[dir=rtl] .hint {
+                  right: 2px;
+                  left: auto;
+                }
+              </style>
+            </form>
+          </div>
         </md-card>
       </div>
     </md-content>
