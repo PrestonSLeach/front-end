@@ -1,17 +1,18 @@
 <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
-        <span>Followers</span>
+        <span>Normal</span>
       </div>
     </md-toolbar>
+
     <md-content>
-      <div>
-                <md-list flex="">
-            <md-list-item class="md-1-line" ng-repeat="following in $following.$state.following">
-              <img ng-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53474/atom_profile_01.jpg" class="md-avatar" alt="{{todos[0].who}}">
-              <div class="md-list-item-text">
-                <h3>@{{following.username}}</h3>
-              </div>
-            </md-list-item>
-          </md-list>
-        </div>
+      <md-list flex="">
+        <md-subheader class="md-no-sticky">Followers</md-subheader>
+        <md-list-item class="md-2-line">
+          <img ng-src="{{todos[0].face}}?20" class="md-avatar" alt="{{todos[0].who}}">
+          <div class="md-list-item-text">
+            <h3>@Username</h3>
+            <p>email??</p>
+          </div>
+        </md-list-item>
+      </md-list>
     </md-content>

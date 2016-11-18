@@ -1,14 +1,14 @@
 <!-- <div ng-show="$home.$state.$login.username"> -->
-<div>
+<div flex-xs="" flex-gt-xs="50" layout="column" layout-align="center">
   <md-card>
-    <md-card-content>
-      {{$home.message}}
+    <md-card-content layout-align="center stretch" layout-fill>
+      <md-input-container layout-align="center stretch" layout-fill>
+        <label>What would you like to tweet?</label>
+          <textarea ng-model="$home.tweetContent" md-maxlength="150" rows="2" md-select-on-focus layout-fill></textarea>
+      </md-input-container>
     </md-card-content>
     <md-card-actions>
-      <md-button ui-sref="user">Go to User</md-button>
-      <md-button ui-sref="tag({tag: cubs})">Go to Tag</md-button>
-      <md-button ui-sref="game({new: true})">New</md-button>
-      <md-button ui-sref="game" ng-disabled="$home.continueDisabled()">Continue</md-button>
+      <md-button>Tweet</md-button>
     </md-card-actions>
   </md-card>
 </div>

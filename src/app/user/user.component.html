@@ -1,7 +1,7 @@
 <div layout="row" class="full-width">
   <ui-view layout="column" layout-align="start none" layout-fill></ui-view>
-  <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
-              md-whiteframe="4" layout="column" layout-align="end none">
+  <md-sidenav  md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
+              md-whiteframe="4" layout="column" layout-align="end">
       <div class="sidebar-header header-cover"
            style="background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);"
            layout="column">
@@ -23,21 +23,12 @@
           </div>
       </md-content>
       <md-divider class="navBarTopDivider"></md-divider>
-      <md-subheader class="md-no-sticky">Recommended People To Follow</md-subheader>
-      <md-list-item ng-repeat="person in $user.$state.people" ng-click="$user.$state.goToPerson(person.name, $event)" class="noright">
-          <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar"/>
-          <p>{{ person.name }}</p>
-          <md-button class="md-secondary followButton" ng-click="doSecondaryAction($event)" aria-label="Chat"
-                     md-svg-icon="communication:message">Follow
-          </md-button>
-      </md-list-item>
-
-      <md-divider></md-divider>
-
       <md-subheader class="md-no-sticky">What's Trending</md-subheader>
-      <md-list-item class="secondary-button-padding" ng-click="doPrimaryAction($event)">
-          <p>Click anywhere to fire the primary action, or the button to fire the secondary</p>
-      </md-list-item>
+      <div ng-repeat="tag in $tag.$state.tags" layout-align="center none" layout="column">
+        <md-button ui-sref="tag({tag: tag.label.substring(1)})" class="centerAlign">
+          {{tag.label}}
+        </md-button>
+      </div>
 
       <md-divider></md-divider>
 

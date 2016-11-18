@@ -2,13 +2,14 @@ export class UserService {
 
   initialized = false
 
-  constructor ($log, $config, $http, $cookies) {
+  constructor ($log, $config, $http, $cookies, $location) {
     'ngInject'
     this.$config = $config
     this.$http = $http
     this.$cookies = $cookies
     this.getPopular();
     this.getTrending();
+    this.$location = $location
     $log.debug('UserService instantiated!')
   }
 
@@ -19,23 +20,6 @@ export class UserService {
     else
       return false
   }
-
-  people = [
-           { name: 'Janet Perkins', img: 'img/100-0.jpeg', newMessage: true },
-           { name: 'Mary Johnson', img: 'img/100-1.jpeg', newMessage: false },
-           { name: 'Peter Carlsson', img: 'img/100-2.jpeg', newMessage: false }
-       ];
-
-       goToPerson = function(person, event) {
-           $mdDialog.show(
-               $mdDialog.alert()
-                   .title('Navigating')
-                   .textContent('Inspect ' + person)
-                   .ariaLabel('Person inspect demo')
-                   .ok('Neat!')
-                   .targetEvent(event)
-           );
-       };
 
   followUser (username) {
     let cookies = this.$cookies
@@ -117,6 +101,8 @@ export class UserService {
     })
   }
   getFollowers (username) {
+    let followerList = this
+    let location = this.$location
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/users/@' + username + '/followers',
@@ -126,13 +112,17 @@ export class UserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      console.log(response.data)
+      followerList.followers = response.data
+      followerList.followers.map(follower => follower.username)
+      location.path('/user/' + username + '/followers')
     }, function errorCallback (response) {
       console.log(response)
     })
   }
 
   getFollowing (username) {
+    let followingList = this
+    let location = this.$location
     this.$http({
       method: 'GET',
       url: 'http://localhost:8080/users/@' + username + '/following',
@@ -142,9 +132,13 @@ export class UserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      console.log(response.data)
+      followingList.following = response.data
+      followingList.following.map(following => following.username)
+      location.path('/user/' + username + '/following')
     }, function errorCallback (response) {
       console.log(response)
     })
   }
+
+  followers = []
 }
