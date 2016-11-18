@@ -29,7 +29,6 @@ export class HomeService {
         }
       }
     }).then(function succeessCallback (response) {
-      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })

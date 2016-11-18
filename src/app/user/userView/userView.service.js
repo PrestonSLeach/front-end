@@ -11,28 +11,6 @@ export class UserViewService {
     $log.debug('UserViewService instantiated!')
   }
 
-  exists () {
-    return this.initialized !== false
-  }
-
-  getTweetsByUser (username) {
-    this.username = username
-    let userService = this
-    this.$http({
-      method: 'GET',
-      url: 'http://localhost:8080/users/@' + username + '/tweets/',
-      headers: {
-        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:3000/'
-      }
-    }).then(function successCallback (response) {
-      userService.tweets = response.data
-    }, function errorCallback (response) {
-      console.log(response)
-    })
-  }
-
   populateProfileInfo () {
     let cookies = this.$cookies
     let userService = this

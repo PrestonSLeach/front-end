@@ -2,54 +2,22 @@ import templateUrl from './userView.component.html'
 
 /* @ngInject */
 class UserViewController {
-  constructor ($log, $userView, $editUser, $mdSidenav, $timeout, $scope, $stateParams, $user) {
+  constructor ($log, $userView, $editUser, $mdSidenav, $timeout, $scope, $stateParams, $user, $tweet) {
     this.$state = $userView
     // this.$state.init($stateParams.tag)
     this.username = $stateParams.user
     $user.username = $stateParams.user
     $user.getFollowers($user.username);
     $user.getFollowing($user.username);
-    $userView.getTweetsByUser(this.username)
+    $tweet.getTweetsByUser(this.username)
     this.message = 'User HTML not yet done'
     $editUser.inProgress = false
     $log.debug('UserViewController instantiated')
 
-    this.likeTweet = function () {
-      console.log('like clicked')
-    }
-
-    this.repostTweet = function () {
-      console.log('repost clicked')
-    }
-
-    this.replyTweet = function () {
-      console.log('reply clicked')
-    }
-
-    this.moreTweet = function () {
-      console.log('more clicked')
-    }
 
     $scope.toggleLeft = buildDelayedToggler('left')
     $scope.isOpenRight = function () {
       return $mdSidenav('right').isOpen()
-    }
-
-    $scope.people = [
-        { name: 'Janet Perkins', img: 'img/100-0.jpeg', newMessage: true },
-        { name: 'Mary Johnson', img: 'img/100-1.jpeg', newMessage: false },
-        { name: 'Peter Carlsson', img: 'img/100-2.jpeg', newMessage: false }
-    ]
-
-    $scope.goToPerson = function (person, event) {
-      $mdDialog.show(
-          $mdDialog.alert()
-                .title('Navigating')
-                .textContent('Inspect ' + person)
-                .ariaLabel('Person inspect demo')
-                .ok('Neat!')
-                .targetEvent(event)
-        )
     }
 
     $scope.navigateTo = function (to, event) {
@@ -137,11 +105,6 @@ class UserViewController {
       }
     }
   }
-
-  // continueDisabled () {
-  //   return !this.$game.exists()
-  // }
-
 }
 
 export const userView = {

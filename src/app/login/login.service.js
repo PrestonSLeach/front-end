@@ -74,7 +74,6 @@ export class LoginService {
       if (response.status === 200) {
         cookies.put('username', user.username)
         cookies.put('password', user.password)
-        // console.log(cookies.getAll())
         loginService.isLoggedIn = true
         location.path('/home')
       } else {

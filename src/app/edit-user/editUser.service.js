@@ -35,7 +35,6 @@ export class EditUserService {
       }
     }).then(function successCallback (response) {
       location.path('/user')
-      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -60,7 +59,6 @@ export class EditUserService {
       cookies.remove('username')
       cookies.remove('password')
       location.path('/login')
-      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -83,7 +81,6 @@ export class EditUserService {
       userWorks.user.lastName = response.data.profile.lastName
       userWorks.user.phoneNumber = response.data.profile.phoneNumber
       userWorks.user.email = response.data.profile.email
-      console.log(response.data)
     }, function errorCallback (response) {
       console.log(response)
     })
