@@ -34,7 +34,7 @@ export class EditUserService {
         }
       }
     }).then(function successCallback (response) {
-      location.path('/user')
+      location.path('/user/' + cookies.get('username'))
     }, function errorCallback (response) {
       console.log(response)
     })
