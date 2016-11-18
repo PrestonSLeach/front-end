@@ -92,7 +92,7 @@ export class EditUserService {
   cancel () {
     let location = this.$location
     this.inProgress = false
-    location.path('/user')
+    location.path('/user/' + this.$cookies.get('username'))
   }
 
   user = {
