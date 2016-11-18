@@ -1,5 +1,5 @@
 <div class="tweets-pane" ng-repeat="tweet in $tweet.$state.tweets">
-  <div ng-cloak="" class="carddemoBasicUsage">
+  <div ng-cloak="" class="carddemoBasicUsage" ng-hide="tweet.flagDeleted">
     <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
       <div flex-xs="" flex-gt-xs="60" layout="column">
         <md-card>
@@ -19,16 +19,16 @@
             <p ng-bind-html="tweet.content"></p>
           </md-card-content>
           <md-card-actions layout="row" layout-align="space-around center">
-            <md-button class="md-icon-button md-accent" aria-label="Reply" ng-click="tweet.this.respondToTweet(tweet.id,'reply')">
+            <md-button class="md-icon-button md-accent" aria-label="Reply" ng-click="$tweet.$state.respondToTweet(tweet.id,'reply')">
               <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/reply.svg" style="color:red;font:bold"></md-icon>
             </md-button>
-            <md-button class="md-icon-button md-accent" aria-label="Repeat" ng-click="tweet.this.respondToTweet(tweet.id,'repost')">
+            <md-button class="md-icon-button md-accent" aria-label="Repeat" ng-click="$tweet.$state.respondToTweet(tweet.id,'repost')">
               <md-icon style="fill: #00E676;" md-svg-icon="/static/imgs/icons/repeat.svg"></md-icon>
             </md-button>
-              <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="tweet.this.likeTweet(tweet.id)">
+              <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$tweet.$state.likeTweet(tweet.id)">
                   <md-icon style="fill: #EF5350;" md-svg-icon="/static/imgs/icons/favorite.svg"></md-icon>
               </md-button>
-              <md-button class="md-icon-button" ng-show="tweet.this.isAuthor(tweet.author.username)" aria-label="More" ng-click="tweet.this.deleteTweet(tweet.id)">
+              <md-button class="md-icon-button" ng-show="$tweet.$state.isAuthor(tweet.author.username)" aria-label="More" ng-click="$tweet.$state.deleteTweet(tweet.id)">
                   <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/delete.svg"></md-icon>
               </md-button>
           </md-card-actions>
