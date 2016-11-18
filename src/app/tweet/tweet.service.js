@@ -61,6 +61,48 @@ export class TweetService {
     })
   }
 
+  getReplies (tweet) {
+    this.$http({
+      method: 'GET',
+      url: 'http://localhost:8080/tweets/' + tweet.id + '/replies',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      }
+    }).then(function successCallback (response) {
+      tweet.replies = response.data
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
+  replyToTweet (tweet) {
+    let tweetService = this
+    let cookies = this.$cookies
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:8080/tweets/' + tweet.id + '/reply',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      },
+      data: {
+        'credentials': {
+          username: cookies.get('username'),
+          password: cookies.get('password')
+        },
+        'content': tweet.replyMessage
+      }
+    }).then(function successCallback (response) {
+      tweetService.$state.reload()
+      console.log('success')
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
   likeTweet (tweetId) {
     let cookies = this.$cookies
     this.$http({
