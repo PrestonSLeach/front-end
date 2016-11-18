@@ -11,6 +11,7 @@ class HomeController {
     this.$user = $user
     this.$cookies = $cookies
     this.$tweet = $tweet
+    $tweet.getUserFeed()
     this.message = 'this is the greatest twitter of All Time'
     $log.debug('HomeController instantiated')
   }
