@@ -30,6 +30,10 @@ export class TweetService {
     })
   }
 
+  replyToTweet(tweetId) {
+
+  }
+
   respondToTweet (tweetId, type) {
     let tweetService = this
     let cookies = this.$cookies
@@ -127,13 +131,16 @@ export class TweetService {
       .map(tweet => {
           let repost = tweet.repostof
           while (repost) {
-            if(repost.content !== '') {
+            if(repost.content !== '' && repost.content !== undefined) {
               tweet.repostContent = tweetService.$sce.trustAsHtml('"' + tweetService.formatContentForLinks(repost.content) + '"' + ' - ' + repost.author.username)
+            } if(repost.content === undefined ) {
+              tweet.flagDeleted = true
             }
             repost = repost.repostof
           }
-          tweet.content = tweetService.$sce.trustAsHtml(tweetService.formatContentForLinks(tweet.content))
-          tweet.this = tweetService
+          if(tweet.content) {
+            tweet.content = tweetService.$sce.trustAsHtml(tweetService.formatContentForLinks(tweet.content))
+          }
           return tweet
         })
     }), function errorCallBack (response) {
