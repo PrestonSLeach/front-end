@@ -5,6 +5,7 @@ import { userView } from './userView.component'
 import { UserViewService } from './userView.service'
 import { followers } from './followers/followers.component'
 import { FollowersService } from './followers/followers.service'
+import { following } from './following/following.component'
 import { FollowingService } from './following/following.service'
 
 export default
@@ -16,6 +17,7 @@ export default
     .service('$userView', UserViewService)
     .component('followers', followers)
     .service('$followers', FollowersService)
+    .component('following', following)
     .service('$following', FollowingService)
     .config(configure)
     .name
