@@ -12,7 +12,49 @@
     </md-card-actions>
   </md-card>
 </div>
+<div ng-repeat="tweet in $home.$tweet.userFeed">
+  <div class="tweets-pane">
+    <div ng-cloak="" class="carddemoBasicUsage">
+      <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs="" flex-gt-xs="50" layout="column">
+          <md-card>
+            <md-card-header>
+              <md-card-avatar>
+                <img class="md-user-avatar" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53474/atom_profile_01.jpg"/>
+              </md-card-avatar>
+              <md-card-header-text>
+                <a class="md-tweet-title" ui-sref="user({user: tweet.author.username})">@{{ tweet.author.username }}</a>
+              </md-card-header-text>
+              <md-button class="md-icon-button" aria-label="More">
+                <md-icon md-svg-icon="/static/imgs/icons/more_vert.svg"></md-icon>
+              </md-button>
+            </md-card-header>
+            <md-card-content>
+              <p ng-show="tweet.repostof.content">"{{tweet.repostof.content}}" - {{tweet.repostof.author.username}}</p>
+              <p ng-bind-html="tweet.content"></p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="space-around center">
 
-<div ng-repeat="tweet in $home.$state.userFeed">
-  <p>{{ tweet.content }}</p>
+              <md-button class="md-icon-button md-accent" aria-label="Reply" ng-click="$home.$state.$tweet.respondToTweet(tweet.id,'reply')">
+                <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/reply.svg" style="color:red;font:bold"></md-icon>
+              </md-button>
+
+              <md-button class="md-icon-button md-accent" aria-label="Repeat" ng-click="$home.$state.$tweet.respondToTweet(tweet.id,'repost')">
+                <md-icon style="fill: #00E676;" md-svg-icon="/static/imgs/icons/repeat.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$home.$state.$tweet.likeTweet(tweet.id)">
+                <md-icon style="fill: #EF5350;" md-svg-icon="/static/imgs/icons/favorite.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-icon-button" ng-show="$home.$state.$tweet.isAuthor(tweet.author.username)" aria-label="More" ng-click="$home.$state.$tweet.deleteTweet(tweet.id)">
+                <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/delete.svg"></md-icon>
+              </md-button>
+
+            </md-card-actions>
+          </md-card>
+        </div>
+      </md-content>
+    </div>
+  </div>
 </div>
