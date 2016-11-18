@@ -9,6 +9,7 @@ export class TweetService {
     this.$location = $location
     this.$sce = $sce
     this.$window = $window
+    this.testing = 'testing'
     $log.debug('TweetService instantiated!')
   }
 
@@ -33,7 +34,6 @@ export class TweetService {
     let tweetService = this
     let cookies = this.$cookies
     let tweet = this.getTweet(tweetId)
-    console.log(tweet)
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/tweets/' + tweetId + '/' + type,
@@ -46,7 +46,7 @@ export class TweetService {
         'credentials': {
           username: cookies.get('username'),
           password: cookies.get('password')
-        }, 
+        },
         'content': ''
       }
     }).then(function successCallback (response) {
@@ -59,7 +59,6 @@ export class TweetService {
 
   likeTweet (tweetId) {
     let cookies = this.$cookies
-    console.log('like' + tweetId)
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/tweets/' + tweetId + '/like',
@@ -102,6 +101,15 @@ export class TweetService {
     })
   }
 
+  formatContentForLinks(content) {
+    console.log(content)
+    return content.split(' ')
+    .map(word =>
+      (word.substring(0, 1) === '#') ? "<a href='tag/" + word.match(/\w+/) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) :
+      (word.substring(0, 1) === '@') ? "<a href='user/" + word.substring(1).toLowerCase() + "' style='text-decoration: none'>" + word + "</a>" : word)
+    .join(' ')
+  }
+
   getUserFeed () {
     let tweetService = this
     let cookies = this.$cookies
@@ -115,19 +123,50 @@ export class TweetService {
       }
     }).then(function successfulCallBack (response) {
       console.log(response.data)
-      tweetService.userFeed = response.data
+      tweetService.tweets = response.data
       .map(tweet => {
-          tweet.content = tweetService.$sce.trustAsHtml(tweet.content
-            .split(' ')
-            .map(word => 
-              (word.substring(0, 1) === '#') ? "<a href='tag/" + word.match(/\w+/) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) : 
-              (word.substring(0, 1) === '@') ? "<a href='user/" + word.substring(1).toLowerCase() + "' style='text-decoration: none'>" + word + "</a>" : word)
-            .join(' '))
+          let repost = tweet.repostof
+          while (repost) {
+            if(repost.content !== '') {
+              tweet.repostContent = tweetService.$sce.trustAsHtml('"' + tweetService.formatContentForLinks(repost.content) + '"' + ' - ' + repost.author.username)
+            }
+            repost = repost.repostof
+          }
+          tweet.content = tweetService.$sce.trustAsHtml(tweetService.formatContentForLinks(tweet.content))
+          tweet.this = tweetService
           return tweet
         })
     }), function errorCallBack (response) {
       console.log(response)
     }
+  }
+
+  getTweetsByTag (tag) {
+    let tweetService = this
+    this.$http({
+      method: 'GET',
+      url: 'http://localhost:8080/tags/' + tag,
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      }
+    }).then(function successCallback (response) {
+      tweetService.tweets = response.data
+        .map(tweet => {
+          console.log(tweet)
+          tweet.content = tweetService.$sce.trustAsHtml(tweet.content
+            .split(' ')
+            .map(word =>
+              (word.substring(0, 1) === '#') ? "<a href='tag/" + word.match(/\w+/) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) :
+              (word.substring(0, 1) === '@') ? "<a href='user/" + word.substring(1).toLowerCase() + "' style='text-decoration: none'>" + word + "</a>" : word)
+            .join(' '))
+          tweet.this = tweetService
+          return tweet
+        })
+    }, function errorCallback (response) {
+      console.log(response)
+    })
   }
 
   isAuthor = function(username) {
