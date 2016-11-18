@@ -1,4 +1,3 @@
-<!-- <div class="otherBackground"></div> -->
 <div layout="row" class="full-width">
   <md-content layout="column" layout-align="start none" id="content" layout-fill>
     <div class="transparentBackground" ng-show="!$tag.$state.$tweet.tweets.length" layout-align="center none" layout="column">
@@ -6,11 +5,7 @@
         This tag has never been used.
       </p>
     </div>
-    <div>
-      <div class="tweets-pane" ng-repeat="tweet in $tag.$state.$tweet.tweets">
-        <div ng-include="'/static/html/tweets.html'"></div>
-      </div>
-    </div>
+      <tweet></tweet>
   </md-content>
 
   <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')" layout="column" layout-align="start none" class="md-whiteframe-z2">
