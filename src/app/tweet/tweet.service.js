@@ -10,7 +10,6 @@ export class TweetService {
     this.$sce = $sce
     this.$window = $window
     this.testing = 'testing'
-    console.log(this)
     $log.debug('TweetService instantiated!')
   }
 
@@ -60,7 +59,6 @@ export class TweetService {
 
   likeTweet (tweetId) {
     let cookies = this.$cookies
-    console.log('like' + tweetId)
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/tweets/' + tweetId + '/like',
@@ -103,6 +101,15 @@ export class TweetService {
     })
   }
 
+  formatContentForLinks(content) {
+    console.log(content)
+    return content.split(' ')
+    .map(word =>
+      (word.substring(0, 1) === '#') ? "<a href='tag/" + word.match(/\w+/) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) :
+      (word.substring(0, 1) === '@') ? "<a href='user/" + word.substring(1).toLowerCase() + "' style='text-decoration: none'>" + word + "</a>" : word)
+    .join(' ')
+  }
+
   getUserFeed () {
     let tweetService = this
     let cookies = this.$cookies
@@ -118,12 +125,14 @@ export class TweetService {
       console.log(response.data)
       tweetService.tweets = response.data
       .map(tweet => {
-          tweet.content = tweetService.$sce.trustAsHtml(tweet.content
-            .split(' ')
-            .map(word =>
-              (word.substring(0, 1) === '#') ? "<a href='tag/" + word.match(/\w+/) + "' style='text-decoration: none'>" + '#' + word.match(/\w+/) + "</a>" + word.substring((word.match(/\w+/).toString().length) + 1) :
-              (word.substring(0, 1) === '@') ? "<a href='user/" + word.substring(1).toLowerCase() + "' style='text-decoration: none'>" + word + "</a>" : word)
-            .join(' '))
+          let repost = tweet.repostof
+          while (repost) {
+            if(repost.content !== '') {
+              tweet.repostContent = tweetService.$sce.trustAsHtml('"' + tweetService.formatContentForLinks(repost.content) + '"' + ' - ' + repost.author.username)
+            }
+            repost = repost.repostof
+          }
+          tweet.content = tweetService.$sce.trustAsHtml(tweetService.formatContentForLinks(tweet.content))
           tweet.this = tweetService
           return tweet
         })
@@ -133,7 +142,6 @@ export class TweetService {
   }
 
   getTweetsByTag (tag) {
-    console.log('here')
     let tweetService = this
     this.$http({
       method: 'GET',
@@ -146,6 +154,7 @@ export class TweetService {
     }).then(function successCallback (response) {
       tweetService.tweets = response.data
         .map(tweet => {
+          console.log(tweet)
           tweet.content = tweetService.$sce.trustAsHtml(tweet.content
             .split(' ')
             .map(word =>
