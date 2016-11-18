@@ -19,7 +19,7 @@
                     <a class="md-tweet-title" ui-sref="user({user: tweet.author.username})">@{{ tweet.author.username }}</a>
                   </md-card-header-text>
                   <md-button class="md-icon-button" aria-label="More">
-                    <md-icon md-svg-icon="/static/imgs/icons/more_vert.svg"></md-icon>
+                    <md-icon style="fill: #616161;" md-svg-icon="/static/imgs/icons/more_vert.svg"></md-icon>
                   </md-button>
                 </md-card-header>
                 <md-card-content>
@@ -30,25 +30,25 @@
                     <md-tooltip>
             Reply
           </md-tooltip>
-                    <md-icon  id="reply" md-svg-icon="/static/imgs/icons/reply.svg"></md-icon>
+                    <md-icon style="fill: #616161;"  id="reply" md-svg-icon="/static/imgs/icons/reply.svg"></md-icon>
                   </md-button>
                   <md-button class="md-icon-button md-accent" aria-label="Repeat" ng-click="$tag.$state.repostTweet(tweet.id,'repost')">
                     <md-tooltip>
             Repost
           </md-tooltip>
-                    <md-icon id="repost" md-svg-icon="/static/imgs/icons/repeat.svg"></md-icon>
+                    <md-icon style="fill: #616161;" id="repost" md-svg-icon="/static/imgs/icons/repeat.svg"></md-icon>
                   </md-button>
-                    <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$tag.$state.repostTweet(tweet.id,'like')">
+                    <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$tag.$state.repostTweet(tweet.id,'favorite')">
                       <md-tooltip>
             Like
           </md-tooltip>
-                        <md-icon id="favorite" md-svg-icon="/static/imgs/icons/favorite.svg"></md-icon>
+                        <md-icon style="fill: #616161;" id="favorite" md-svg-icon="/static/imgs/icons/favorite.svg"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" ng-show="$tag.$state.isAuthor(tweet.author.username)" aria-label="More" ng-click="$tag.$state.deleteTweet(tweet.id)">
                       <md-tooltip>
             Delete
           </md-tooltip>
-                        <md-icon id="delete" md-svg-icon="/static/imgs/icons/delete.svg"></md-icon>
+                        <md-icon style="fill: #616161;" id="delete" md-svg-icon="/static/imgs/icons/delete.svg"></md-icon>
                     </md-button>
                 </md-card-actions>
               </md-card>

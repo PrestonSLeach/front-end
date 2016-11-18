@@ -24,7 +24,7 @@
       </md-content>
       <md-divider class="navBarTopDivider"></md-divider>
       <md-subheader class="md-no-sticky">Recommended People To Follow</md-subheader>
-      <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)" class="noright">
+      <md-list-item ng-repeat="person in $user.$state.people" ng-click="$user.$state.goToPerson(person.name, $event)" class="noright">
           <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar"/>
           <p>{{ person.name }}</p>
           <md-button class="md-secondary followButton" ng-click="doSecondaryAction($event)" aria-label="Chat"
@@ -43,7 +43,7 @@
 
       <md-subheader class="md-no-sticky">Tweet of The Week</md-subheader>
       <md-list-item>
-          <p>Click anywhere to fire the secondary action</p>
+          <p>Inject list of tweets from userservice.populartweets</p>
       </md-list-item>
   </md-sidenav>
 </div>
