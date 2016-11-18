@@ -1,41 +1,46 @@
 <div class="background-image"></div>
-<div layout="column" layout-align="center center">
+<div layout="column" layout-align="center center" style="height: 100%">
   <md-content class = 'editUserForm'>
     <form name="$editUser.$state.editUserForm">
       <div flex class="loginContainer" layout="column" layout-align="center center">
-        <md-input-container class="md-block" flex-gt-sm="">
-          <h1>{{$editUser.$state.$cookies.get('username')}}</h1>
-        </md-input-container>
-          <div flex="5" hide-xs="" hide-sm="">
-            <!-- Spacer //-->
-          </div>
-        <md-input-container class="md-block" flex-gt-sm="" layout-align="center center" >
-          <label>FirstName</label>
-            <input name="firstName" ng-model="$editUser.$state.user.firstName">
-        </md-input-container>
-          <div flex="10" hide-xs="" hide-sm="">
-            <!-- Spacer //-->
-          </div>
-        <md-input-container class="md-block" flex-gt-sm="" layout-align="center center">
-          <label>LastName</label>
-          <input name="lastName" ng-model="$editUser.$state.user.lastName">
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm="" layout-align="center center">
-          <label>Email</label>
-            <input name="email" ng-model="$editUser.$state.user.email">
-        </md-input-container>
-          <div flex="5" hide-xs="" hide-sm="">
-            <!-- Spacer //-->
-          </div>
-        <md-input-container class="md-block" flex-gt-sm="">
-          <label>PhoneNumber</label>
-          <input name="phoneNumber" ng-model="$editUser.$state.user.phoneNumber">
-        </md-input-container>
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
-          <md-button class="md-raised" ng-click="$editUser.$state.cancel()">Cancel</md-button>
-          <md-button class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
-        </section>
+
+          <md-input-container class="md-block" flex-gt-sm="">
+            <h1>{{$editUser.$state.$cookies.get('username')}}</h1>
+          </md-input-container>
+            <div flex="5" hide-xs="" hide-sm="">
+              <!-- Spacer //-->
+            </div>
+          <div flex class="firstLastNameContainer"  layout="row" layout-align="center center"layout-wrap>
+          <md-input-container class="md-block" flex-gt-sm="" layout-align="center center" >
+            <label>FirstName</label>
+              <input name="firstName" ng-model="$editUser.$state.user.firstName">
+          </md-input-container>
+            <div flex="10" hide-xs="" hide-sm="">
+              <!-- Spacer //-->
+            </div>
+          <md-input-container class="md-block" flex-gt-sm="" layout-align="center center">
+            <label>LastName</label>
+            <input name="lastName" ng-model="$editUser.$state.user.lastName">
+          </md-input-container>
+        </div>
+        <div flex class="emailPhoneContainer"  layout="row" layout-align="center center"layout-wrap>
+          <md-input-container class="md-block" flex-gt-sm="" layout-align="center center">
+            <label>Email</label>
+              <input name="email" ng-model="$editUser.$state.user.email">
+          </md-input-container>
+            <div flex="5" hide-xs="" hide-sm="">
+              <!-- Spacer //-->
+            </div>
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>PhoneNumber</label>
+            <input name="phoneNumber" ng-model="$editUser.$state.user.phoneNumber">
+          </md-input-container>
+        </div>
+          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button class="md-raised" ng-click="$editUser.$state.editUser()">Save</md-button>
+            <md-button class="md-raised" ng-click="$editUser.$state.cancel()">Cancel</md-button>
+            <md-button class="md-raised md-warn" ng-click="$editUser.$state.deleteAccount()">Delete Account</md-button>
+          </section>
       </div>
       <style>
         body[dir=rtl] .hint {

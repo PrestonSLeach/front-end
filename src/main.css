@@ -46,7 +46,11 @@ md-sidenav.md-locked-open {
   background-color: #f42a1f;
   color: white;
   font-weight: bold;
+}
 
+.unfollowButton:not([disabled]):hover {
+  background-color: #f42a1f;
+  color: white;
 }
 
 svg {
@@ -169,7 +173,5 @@ margin: 4px;
 /*Edit user page*/
 .editUserForm {
   width: 700px;
-  max-width: 23%;
-  height: 675px;
-  max-height: 100%
+  max-width: 80%;
 }

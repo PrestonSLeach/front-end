@@ -8,7 +8,14 @@ export class UserService {
     this.$http = $http
     this.$cookies = $cookies
     this.$location = $location
+    this.isFollowing = false
     $log.debug('UserService instantiated!')
+  }
+
+  followAvailable () {
+    let cookies = this.$cookies
+    let follows = this.getFollowing(cookies.get('username'))
+    console.log(follows)
   }
 
   followUser (username) {
@@ -84,9 +91,10 @@ export class UserService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successCallback (response) {
-      followingList.following = response.data
+      followingList.follows = response.data
       followingList.numOfFollowing = response.data.length
-      followingList.following.map(following => following.username)
+      followingList.follows.map(followings => followings.username)
+
     }, function errorCallback (response) {
       console.log(response)
     })

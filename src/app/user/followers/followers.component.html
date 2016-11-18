@@ -1,16 +1,15 @@
-<h1>Followers</h1>
-<md-content>
-  <div>
-    <div class="users-pane" ng-repeat="follower in $user.$state.followers">
-      <div ng-cloak="" class="carddemoBasicUsage">
-        <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
-          <div flex-xs="" flex-gt-xs="50" layout="column">
-            <p>
-              {{ follower.username }}
-            </p>
-          </div>
-        </md-content>
-      </div>
-    </div>
+<md-toolbar layout="row" class="md-hue-3">
+  <div class="md-toolbar-tools">
+    <span>Followers</span>
   </div>
+</md-toolbar>
+<md-content>
+  <md-list flex="">
+    <md-list-item class="md-2-line" href="user/{{follower.username}}"ng-repeat="follower in $followers.$state.$user.followers">
+      <img ng-src="{{todos[0].face}}?20" class="md-avatar" alt="{{todos[0].who}}">
+        <div class="md-list-item-text">
+          <h3>@{{follower.username}}</h3>
+        </div>
+    </md-list-item>
+  </md-list>
 </md-content>
