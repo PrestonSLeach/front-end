@@ -1,17 +1,18 @@
 export class TweetService {
   initialized = false
 
-  constructor ($log, $http, $cookies, $state, $location, $sce) {
+  constructor ($log, $http, $cookies, $state, $location, $sce, $window) {
     'ngInject'
     this.$http = $http
     this.$cookies = $cookies
     this.$state = $state
     this.$location = $location
     this.$sce = $sce
+    this.$window = $window
     $log.debug('TweetService instantiated!')
   }
 
-  getTweet(id) {
+  getTweet = function(id) {
   	let tweetService = this
   	this.$http({
       method: 'GET',
@@ -22,17 +23,17 @@ export class TweetService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function succeessCallback (response) {
-      tweetService.tweet = response.data
+      return response.data
     }, function errorCallback (response) {
       console.log(response)
     })
   }
 
-  respondToTweet (tweetId,type) {
+  respondToTweet (tweetId, type) {
+    let tweetService = this
     let cookies = this.$cookies
-    console.log(tweetId + ' ' + type)
-    console.log(this.$state.userFeed)
-    console.log(this.$location.path())
+    let tweet = this.getTweet(tweetId)
+    console.log(tweet)
     this.$http({
       method: 'POST',
       url: 'http://localhost:8080/tweets/' + tweetId + '/' + type,
@@ -55,9 +56,32 @@ export class TweetService {
     })
   }
 
+  likeTweet (tweetId) {
+    let cookies = this.$cookies
+    console.log('like' + tweetId)
+    this.$http({
+      method: 'POST',
+      url: 'http://localhost:8080/tweets/' + tweetId + '/like',
+      headers: {
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/'
+      },
+      data: {
+        username: cookies.get('username'),
+        password: cookies.get('password')
+      }
+    }).then(function successCallback (response) {
+      console.log('success')
+    }, function errorCallback (response) {
+      console.log(response)
+    })
+  }
+
   deleteTweet (tweetId) {
     let cookies = this.$cookies
     let location = this.$location
+    let tweetService = this
     this.$http({
       method: 'DELETE',
       url: 'http://localhost:8080/tweets/' + tweetId,
@@ -71,9 +95,8 @@ export class TweetService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
-      if (location === '/home') {
-        getUserFeed()
-      }
+      // call different function... do in the morning
+      tweetService.getUserFeed(tweetService.tweet)
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -91,6 +114,7 @@ export class TweetService {
         'Access-Control-Allow-Origin': 'http://localhost:3000/'
       }
     }).then(function successfulCallBack (response) {
+      console.log(response.data)
       tweetService.userFeed = response.data
       .map(tweet => {
           tweet.content = tweetService.$sce.trustAsHtml(tweet.content
@@ -104,6 +128,13 @@ export class TweetService {
     }), function errorCallBack (response) {
       console.log(response)
     }
+  }
+
+  isAuthor = function(username) {
+    if (username === this.$cookies.get('username'))
+      return true
+    else
+      return false
   }
 
 }
