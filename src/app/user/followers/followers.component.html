@@ -1,11 +1,10 @@
 <md-toolbar layout="row" class="md-hue-3">
   <div class="md-toolbar-tools">
-    <span>Normal</span>
+    <span>Followers</span>
   </div>
 </md-toolbar>
 <md-content>
   <md-list flex="">
-    <md-subheader class="md-no-sticky">Followers</md-subheader>
     <md-list-item class="md-2-line" href="user/{{follower.username}}"ng-repeat="follower in $followers.$state.$user.followers">
       <img ng-src="{{todos[0].face}}?20" class="md-avatar" alt="{{todos[0].who}}">
         <div class="md-list-item-text">
