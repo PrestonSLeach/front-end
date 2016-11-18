@@ -13,13 +13,13 @@
                    layout-align="center center">
           </div>
           <!-- Sidebar brand name -->
-          <md-button class="followButton" ng-click="$userView.$state.followUser($userView.username)">Follow</md-button>
-          <md-button class="unfollowButton" ng-click="$userView.$state.unfollowUser($userView.username)">Unfollow</md-button>
+          <md-button class="followButton" ng-click="$user.$state.followUser($user.$state.username)">Follow</md-button>
+          <md-button class="unfollowButton" ng-click="$user.$state.unfollowUser($user.$state.username)">Unfollow</md-button>
       </div>
       <md-content>
           <div class="follow" layout="row" layout-align="space-around">
-              <md-button ng-click="$userView.$state.getFollowers($userView.username)">4 Followers</md-button>
-              <md-button ng-click="$userView.$state.getFollowing($userView.username)">20 Following</md-button>
+              <md-button ng-click="$user.$state.getFollowers($user.$state.username)">4 Followers</md-button>
+              <md-button ng-click="$user.$state.getFollowing($user.$state.username)">20 Following</md-button>
           </div>
       </md-content>
       <md-divider class="navBarTopDivider"></md-divider>
