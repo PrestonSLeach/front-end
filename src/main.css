@@ -168,3 +168,7 @@ margin: 4px;
   height: 675px;
   max-height: 100%
 }
+
+.tagContainer {
+  height: 92vh;
+}

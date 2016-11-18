@@ -1,7 +1,6 @@
-<div class="otherBackground"></div>
-<div layout="row" class="full-width">
+<div layout="row" class="full-width tagContainer">
   <md-content layout="column" layout-align="start none" id="content" layout-fill>
-    <div class="transparentBackground" ng-show="!$tag.$state.tweets.length" layout-align="center none" layout="column">
+    <div ng-show="!$tag.$state.tweets.length" layout-align="center none" layout="column">
       <p style="text-align: center">
         This tag has never been used.
       </p>
@@ -10,7 +9,7 @@
       <div class="tweets-pane" ng-repeat="tweet in $tag.$state.tweets">
         <div ng-cloak="" class="carddemoBasicUsage">
           <md-content layout-align="center none" class="md-padding" layout-xs="column" layout="row">
-            <div flex-xs="" flex-gt-xs="60" layout="column">
+            <div flex-xs="" flex-gt-xs="50" layout="column">
               <md-card>
                 <md-card-header>
                   <md-card-avatar>
@@ -28,16 +27,28 @@
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="space-around center">
                   <md-button class="md-icon-button md-accent" aria-label="Reply" ng-click="$tag.$state.repostTweet(tweet.id,'reply')">
-                    <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/reply.svg" style="color:red;font:bold"></md-icon>
+                    <md-tooltip>
+            Reply
+          </md-tooltip>
+                    <md-icon  id="reply" md-svg-icon="/static/imgs/icons/reply.svg"></md-icon>
                   </md-button>
                   <md-button class="md-icon-button md-accent" aria-label="Repeat" ng-click="$tag.$state.repostTweet(tweet.id,'repost')">
-                    <md-icon style="fill: #00E676;" md-svg-icon="/static/imgs/icons/repeat.svg"></md-icon>
+                    <md-tooltip>
+            Repost
+          </md-tooltip>
+                    <md-icon id="repost" md-svg-icon="/static/imgs/icons/repeat.svg"></md-icon>
                   </md-button>
                     <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$tag.$state.repostTweet(tweet.id,'like')">
-                        <md-icon style="fill: #EF5350;" md-svg-icon="/static/imgs/icons/favorite.svg"></md-icon>
+                      <md-tooltip>
+            Like
+          </md-tooltip>
+                        <md-icon id="favorite" md-svg-icon="/static/imgs/icons/favorite.svg"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" ng-show="$tag.$state.isAuthor(tweet.author.username)" aria-label="More" ng-click="$tag.$state.deleteTweet(tweet.id)">
-                        <md-icon style="fill: #64B5F6;" md-svg-icon="/static/imgs/icons/delete.svg"></md-icon>
+                      <md-tooltip>
+            Delete
+          </md-tooltip>
+                        <md-icon id="delete" md-svg-icon="/static/imgs/icons/delete.svg"></md-icon>
                     </md-button>
                 </md-card-actions>
               </md-card>
@@ -48,7 +59,7 @@
     </div>
   </md-content>
 
-  <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')" layout="column" layout-align="start none" class="md-whiteframe-z2">
+  <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')" layout="column" layout-align="start none" class="md-whiteframe-z2 tagContainer">
     <md-content layout="column">
       <h5 style="text-align: center"> Trending #'s</h5>
       <div ng-repeat="tag in $tag.$state.tags" layout-align="center none" layout="column">

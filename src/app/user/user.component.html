@@ -13,8 +13,8 @@
                    layout-align="center center">
           </div>
           <!-- Sidebar brand name -->
-          <md-button class="followButton" ng-click="$user.$state.followUser($user.$state.username)">Follow</md-button>
-          <md-button class="unfollowButton" ng-click="$user.$state.unfollowUser($user.$state.username)">Unfollow</md-button>
+          <md-button class="followButton" ng-click="$user.$state.followUser($user.$state.username)" ng-hide="$user.$state.checkCurrentProfile($user.$state.username)">Follow</md-button>
+          <md-button class="unfollowButton" ng-click="$user.$state.unfollowUser($user.$state.username)" ng-hide="$user.$state.checkCurrentProfile($user.$state.username)">Unfollow</md-button>
       </div>
       <md-content>
           <div class="follow" layout="row" layout-align="space-around">

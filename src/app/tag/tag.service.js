@@ -13,6 +13,9 @@ export class TagService {
   }
 
 repostTweet (tweetId,type) {
+    if (type==='reply') document.getElementById('reply').style = 'fill: #64B5F6;';
+    if (type==='repost') document.getElementById('repost').style = 'fill: #00E676;';
+    if (type==='favorite') document.getElementById('favorite').style = 'fill: #EF5350;';
     let cookies = this.$cookies
     this.$http({
       method: 'POST',

@@ -7,8 +7,19 @@ export class UserService {
     this.$config = $config
     this.$http = $http
     this.$cookies = $cookies
+    
     $log.debug('UserService instantiated!')
   }
+
+  checkCurrentProfile(username) {
+    let cookies = this.$cookies
+    if (username===cookies.get('username'))
+      return true
+    else
+      return false
+  }
+
+
 
   followUser (username) {
     let cookies = this.$cookies
