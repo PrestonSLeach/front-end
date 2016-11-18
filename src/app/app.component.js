@@ -16,7 +16,6 @@ class AppController {
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange = searchTextChange;
-        this.wtf = 'wtf'
         var originatorEv;
 
 
@@ -120,8 +119,8 @@ class AppController {
                     display: '@'+state.username
                 };
             });
-            console.log(controll.states)
-            console.log(allStates)
+            // console.log(controll.states)
+            // console.log(allStates)
             controll.states = controll.states.concat(allStates)
         }, function errorCallback(response) {
             console.log(response)
