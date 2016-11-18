@@ -34,7 +34,7 @@ export class EditUserService {
         }
       }
     }).then(function successCallback (response) {
-      location.path('/user')
+      location.path('/user/' + cookies.get('username'))
     }, function errorCallback (response) {
       console.log(response)
     })
@@ -89,7 +89,7 @@ export class EditUserService {
   cancel () {
     let location = this.$location
     this.inProgress = false
-    location.path('/user')
+    location.path('/user/' + this.$cookies.get('username'))
   }
 
   user = {
