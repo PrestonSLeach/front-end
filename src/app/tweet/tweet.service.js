@@ -50,6 +50,7 @@ export class TweetService {
         'content': ''
       }
     }).then(function successCallback (response) {
+      tweetService.$state.reload()
       console.log('success')
     }, function errorCallback (response) {
       console.log(response)
@@ -95,8 +96,7 @@ export class TweetService {
         password: cookies.get('password')
       }
     }).then(function successCallback (response) {
-      // call different function... do in the morning
-      tweetService.getUserFeed(tweetService.tweet)
+      tweetService.$state.reload()
     }, function errorCallback (response) {
       console.log(response)
     })
