@@ -23,7 +23,7 @@
             </div>
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Password</label>
-            <input name="password" ng-model="$login.$state.user.password" type="password">
+            <input ng-keyup="$event.keyCode == 13 && $login.$state.loginClicked()" name="password" ng-model="$login.$state.user.password" type="password">
           </md-input-container>
         </div>
         <style>
