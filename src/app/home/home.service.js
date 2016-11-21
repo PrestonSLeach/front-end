@@ -1,10 +1,11 @@
 export class HomeService {
   initialized = false
 
-  constructor ($log, $login, $http, $tweet, $cookies) {
+  constructor ($log, $login, $http, $tweet, $cookies, $state) {
     'ngInject'
     this.$login = $login
     this.$http = $http
+    this.$state = $state
     this.$tweet = $tweet
     this.$cookies = $cookies
     $log.debug('HomeService instantiated!')
@@ -29,6 +30,8 @@ export class HomeService {
         }
       }
     }).then(function succeessCallback (response) {
+      homeService.tweetContent = ''
+      homeService.$state.reload()
     }, function errorCallback (response) {
       console.log(response)
     })

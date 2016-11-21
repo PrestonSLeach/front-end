@@ -67,7 +67,7 @@
           </div>
           <md-input-container class="md-block" flex-gt-sm="">
             <label>Repeat Password</label>
-            <input name="repeatPassword" ng-model="$login.$state.user.repeatPassword" type="password">
+            <input ng-keyup="$event.keyCode == 13 && $login.$state.signUpClicked()" name="repeatPassword" ng-model="$login.$state.user.repeatPassword" type="password">
             <div class="hint" ng-show="showHints">Passwords must match</div>
             </div>
           </md-input-container>
